@@ -1,27 +1,204 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Pulling Threads</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pulling Threads</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #07070d;
+      color: #f5f5f7;
+      line-height: 1.6;
+    }
+
+    .page {
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      padding: 48px 24px;
+    }
+
+    .glow {
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 520px;
+      height: 520px;
+      background:
+        radial-gradient(circle, rgba(168,85,247,0.45), transparent 60%),
+        repeating-linear-gradient(
+          135deg,
+          rgba(168,85,247,0.35) 0px,
+          rgba(168,85,247,0.35) 1px,
+          transparent 1px,
+          transparent 22px
+        );
+      filter: blur(1px);
+      opacity: 0.75;
+      border-radius: 50%;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .tag {
+      color: #c084fc;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(48px, 8vw, 92px);
+      line-height: 0.95;
+      margin: 0 0 24px;
+    }
+
+    .hero-text {
+      max-width: 680px;
+      font-size: 22px;
+      color: #d4d4dc;
+      margin-bottom: 36px;
+    }
+
+    .buttons a {
+      display: inline-block;
+      margin: 8px 10px 8px 0;
+      padding: 12px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: #fff;
+      border: 1px solid rgba(192,132,252,0.5);
+      background: rgba(168,85,247,0.12);
+    }
+
+    .buttons a:hover {
+      background: rgba(168,85,247,0.25);
+    }
+
+    section {
+      margin-top: 72px;
+    }
+
+    h2 {
+      color: #c084fc;
+      font-size: 28px;
+      margin-bottom: 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 0 40px rgba(168,85,247,0.08);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #ffffff;
+    }
+
+    .card p, .about p {
+      color: #cfcfd8;
+    }
+
+    footer {
+      margin-top: 80px;
+      color: #8f8f9d;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Pulling Threads</h1>
+  <main class="page">
+    <div class="glow"></div>
 
-    <p>
-        Exploring security, AI, software engineering, and the ideas that emerge when you start pulling on a thread.
-    </p>
+    <div class="container">
+      <div class="tag">Security • AI • Engineering • Curiosity</div>
 
-    <h2>About</h2>
+      <h1>Pulling<br>Threads</h1>
 
-    <p>
-        Red Team Engineer interested in offensive security, AI-assisted security testing, and continuous learning.
-    </p>
+      <p class="hero-text">
+        Exploring security, AI systems, software engineering, and the ideas that emerge
+        when you start pulling on a thread.
+      </p>
 
-    <h2>Projects</h2>
+      <div class="buttons">
+        <a href="#projects">Projects</a>
+        <a href="#notes">Notes</a>
+        <a href="#about">About</a>
+        <a href="https://github.com/allmighty-tiger" target="_blank">GitHub</a>
+      </div>
 
-    <ul>
-        <li>AI Multi-Agent Security Testing</li>
-        <li>Offensive Security Research</li>
-        <li>OSCP Journey</li>
-    </ul>
+      <section id="projects">
+        <h2>Current Focus</h2>
+
+        <div class="grid">
+          <div class="card">
+            <h3>AI Multi-Agent Security Testing</h3>
+            <p>
+              Building and evaluating agent-based approaches for white-box security analysis.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Offensive Security</h3>
+            <p>
+              Application security, attack paths, adversarial thinking, and practical security research.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Continuous Learning</h3>
+            <p>
+              OSCP journey, technical experimentation, and lessons from moving across QA, software engineering, and Red Team.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="notes">
+        <h2>Notes</h2>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Coming Soon</h3>
+            <p>
+              Notes on security, AI, engineering, leadership, and the threads worth following.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="about">
+        <h2>About</h2>
+        <p>
+          I am a Red Team Engineer with a background in software engineering and test automation.
+          I enjoy exploring how security, AI, and complex systems intersect.
+        </p>
+        <p>
+          Pulling Threads is a place for projects, technical notes, experiments, and ideas worth investigating.
+        </p>
+      </section>
+
+      <footer>
+        © 2026 Pulling Threads
+      </footer>
+    </div>
+  </main>
 </body>
 </html>
