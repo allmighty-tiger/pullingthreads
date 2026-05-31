@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlowBusters | Pulling Threads</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #07070d;
+      color: #f5f5f7;
+      line-height: 1.6;
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 48px 24px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .thread-art {
+      position: absolute;
+      top: 70px;
+      right: -120px;
+      width: 760px;
+      height: 440px;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .thread-art path {
+      fill: none;
+      stroke: #b026ff;
+      stroke-width: 1.2;
+      filter: drop-shadow(0 0 5px #b026ff);
+    }
+
+    .thread-art circle {
+      fill: #d946ef;
+      filter: drop-shadow(0 0 10px #d946ef);
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 90px;
+      font-size: 14px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    nav a {
+      color: #f5f5f7;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      color: #c084fc;
+    }
+
+    .brand span {
+      color: #c084fc;
+    }
+
+    .tag {
+      color: #c084fc;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(52px, 8vw, 96px);
+      line-height: 0.95;
+      margin: 0 0 24px;
+      letter-spacing: -0.04em;
+    }
+
+    h1 span {
+      color: #a855f7;
+      text-shadow: 0 0 24px rgba(168,85,247,0.5);
+    }
+
+    .hero-text {
+      max-width: 760px;
+      font-size: 21px;
+      color: #d4d4dc;
+      margin-bottom: 34px;
+    }
+
+    .buttons a {
+      display: inline-block;
+      margin: 8px 10px 8px 0;
+      padding: 12px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #fff;
+      border: 1px solid rgba(192,132,252,0.45);
+      background: rgba(168,85,247,0.10);
+    }
+
+    .buttons a:hover {
+      background: rgba(168,85,247,0.24);
+      box-shadow: 0 0 18px rgba(168,85,247,0.35);
+    }
+
+    section {
+      margin-top: 74px;
+    }
+
+    h2 {
+      color: #c084fc;
+      font-size: 18px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    h2::after {
+      content: "";
+      display: block;
+      width: 36px;
+      height: 2px;
+      background: #c084fc;
+      margin-top: 10px;
+      box-shadow: 0 0 12px rgba(192,132,252,0.8);
+    }
+
+    .card {
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(192,132,252,0.22);
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: 0 0 40px rgba(168,85,247,0.08);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #fff;
+      font-size: 23px;
+    }
+
+    .card p,
+    li {
+      color: #cfcfd8;
+    }
+
+    .workflow {
+      width: 100%;
+      margin-top: 8px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(192,132,252,0.22);
+    }
+
+    .workflow text {
+      font-family: Arial, sans-serif;
+      fill: #f5f5f7;
+    }
+
+    .box {
+      fill: rgba(168,85,247,0.11);
+      stroke: rgba(192,132,252,0.75);
+      stroke-width: 1.4;
+      rx: 14;
+      filter: drop-shadow(0 0 8px rgba(168,85,247,0.35));
+    }
+
+    .arrow {
+      stroke: #c084fc;
+      stroke-width: 2;
+      fill: none;
+      marker-end: url(#arrowhead);
+      filter: drop-shadow(0 0 5px #a855f7);
+    }
+
+    .small {
+      fill: #cfcfd8;
+      font-size: 13px;
+    }
+
+    .label {
+      fill: #ffffff;
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    .terminal {
+      background: rgba(0,0,0,0.45);
+      border: 1px solid rgba(192,132,252,0.25);
+      border-radius: 14px;
+      padding: 18px;
+      color: #d8b4fe;
+      overflow-x: auto;
+      font-size: 14px;
+    }
+
+    footer {
+      margin-top: 80px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: #8f8f9d;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 720px) {
+      nav {
+        display: block;
+        margin-bottom: 64px;
+      }
+
+      nav a {
+        display: inline-block;
+        margin-top: 14px;
+      }
+
+      .thread-art {
+        right: -260px;
+        top: 120px;
+        opacity: 0.25;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <svg class="thread-art" viewBox="0 0 900 520" preserveAspectRatio="none">
+      <path d="M0 260 C180 120, 280 360, 420 210 S700 80, 900 180" />
+      <path d="M0 300 C160 200, 300 180, 430 260 S650 420, 900 260" />
+      <path d="M40 120 C220 260, 300 60, 470 190 S680 280, 900 90" />
+      <path d="M80 430 C240 300, 360 390, 500 230 S760 160, 900 340" />
+      <circle cx="260" cy="210" r="5" />
+      <circle cx="470" cy="190" r="6" />
+      <circle cx="650" cy="260" r="4" />
+      <circle cx="820" cy="300" r="5" />
+    </svg>
+
+    <div class="container">
+      <nav>
+        <div class="brand">Pulling <span>Threads</span></div>
+        <a href="index.html">← Back Home</a>
+      </nav>
+
+      <div class="tag">Featured Thread</div>
+
+      <h1>Flow<span>Busters</span></h1>
+
+      <p class="hero-text">
+        FlowBusters is an experimental security project for finding business logic flaws.
+        Instead of only scanning endpoints, it follows the workflow itself: record the flow,
+        analyze state transitions, generate adversarial probes, and report confirmed logic issues.
+      </p>
+
+      <div class="buttons">
+        <a href="https://github.com/allmighty-tiger/FlowBusters" target="_blank">View GitHub Repo →</a>
+        <a href="#workflow">See Workflow</a>
+      </div>
+
+      <section>
+        <h2>Why It Exists</h2>
+
+        <div class="card">
+          <p>
+            Many apps pass unit tests, automated scans, and standard penetration tests, but still fail
+            when users abuse the intended business process. FlowBusters focuses on the multi-step rules
+            an application assumes users will follow, but may not enforce server-side.
+          </p>
+        </div>
+      </section>
+
+      <section id="workflow">
+        <h2>Workflow</h2>
+
+        <svg class="workflow" viewBox="0 0 980 360" role="img" aria-label="FlowBusters workflow diagram">
+          <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L9,3 z" fill="#c084fc"></path>
+            </marker>
+          </defs>
+
+          <rect class="box" x="40" y="70" width="180" height="110"></rect>
+          <text class="label" x="80" y="115">1. Record</text>
+          <text class="small" x="68" y="145">Browser workflow</text>
+          <text class="small" x="68" y="165">demo.json + HAR</text>
+
+          <path class="arrow" d="M230 125 C270 125, 285 125, 320 125"></path>
+
+          <rect class="box" x="330" y="70" width="180" height="110"></rect>
+          <text class="label" x="370" y="115">2. Analyze</text>
+          <text class="small" x="360" y="145">State transitions</text>
+          <text class="small" x="360" y="165">critical endpoints</text>
+
+          <path class="arrow" d="M520 125 C560 125, 575 125, 610 125"></path>
+
+          <rect class="box" x="620" y="70" width="180" height="110"></rect>
+          <text class="label" x="660" y="115">3. Mutate</text>
+          <text class="small" x="646" y="145">Skip step, replay,</text>
+          <text class="small" x="646" y="165">tamper, role swap</text>
+
+          <path class="arrow" d="M710 190 C710 245, 500 245, 500 275"></path>
+
+          <rect class="box" x="395" y="245" width="210" height="90"></rect>
+          <text class="label" x="444" y="283">4. Probe</text>
+          <text class="small" x="426" y="310">Findings + remediation</text>
+        </svg>
+      </section>
+
+      <section>
+        <h2>Attack Ideas</h2>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Skip Step</h3>
+            <p>Jump directly to a later endpoint without completing required workflow prerequisites.</p>
+          </div>
+
+          <div class="card">
+            <h3>Role Swap</h3>
+            <p>Try one role’s session context against another role’s expected actions.</p>
+          </div>
+
+          <div class="card">
+            <h3>Data Tamper</h3>
+            <p>Mutate request body values such as IDs, amounts, statuses, or ownership-sensitive fields.</p>
+          </div>
+
+          <div class="card">
+            <h3>Replay</h3>
+            <p>Re-fire a captured request after the workflow should no longer allow it.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Example Command</h2>
+
+        <pre class="terminal"><code>Captain, run FlowBusters against https://your-app.example.com/workflow</code></pre>
+      </section>
+
+      <footer>
+        <span>© 2026 Pulling Threads</span>
+        <span>FlowBusters · Business logic security testing</span>
+      </footer>
+    </div>
+  </main>
+</body>
+</html>
