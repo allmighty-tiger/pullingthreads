@@ -97,7 +97,7 @@
     }
 
     h1 {
-      font-size: clamp(54px, 9vw, 104px);
+      font-size: clamp(48px, 8vw, 92px);
       line-height: 0.95;
       margin: 0 0 24px;
       letter-spacing: -0.04em;
@@ -109,10 +109,28 @@
     }
 
     .hero-text {
-      max-width: 680px;
+      max-width: 760px;
       font-size: 21px;
       color: #d4d4dc;
-      margin-bottom: 36px;
+      margin-bottom: 28px;
+    }
+
+    .interest-list {
+      max-width: 760px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px 18px;
+      margin: 28px 0 36px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .interest-list li {
+      color: #cfcfd8;
+      border: 1px solid rgba(192,132,252,0.22);
+      background: rgba(255,255,255,0.035);
+      border-radius: 12px;
+      padding: 10px 12px;
     }
 
     .buttons a {
@@ -295,89 +313,104 @@
         <div class="brand">Pulling <span>Threads</span></div>
 
         <div class="nav-links">
-          <a href="#projects">Current Threads</a>
-          <a href="#notes">Notes</a>
-          <a href="#about">About</a>
+          <a href="#featured">Featured</a>
+          <a href="#experiments">Experiments</a>
+          <a href="#writing">Writing</a>
         </div>
       </nav>
 
-      <div class="tag">Security • AI • Engineering • Curiosity</div>
+      <div class="tag">Offensive Security • AI • Engineering</div>
 
       <h1>
-        PULLING<br>
-        <span class="purple">THREADS</span>
+        Hi, I'm<br>
+        <span class="purple">Dona.</span>
       </h1>
 
       <p class="hero-text">
-        Exploring security, AI systems, software engineering, and the ideas that emerge
-        when you start pulling on a thread.
+        I'm an Offensive Security Engineer with a background in software engineering
+        and test automation.
+      </p>
+
+      <p class="hero-text">
+        My career started in Quality Assurance, where I spent years learning how
+        applications break. Later, I moved into software engineering and worked on
+        building full-stack applications. Today, I apply both perspectives in
+        offensive security, helping organizations identify weaknesses before attackers do.
+      </p>
+
+      <ul class="interest-list">
+        <li>Red Team operations</li>
+        <li>Application Security</li>
+        <li>Security Automation</li>
+        <li>AI-assisted security testing</li>
+        <li>Secure software design</li>
+      </ul>
+
+      <p class="hero-text">
+        I enjoy understanding how complex systems work, exploring attack paths,
+        and building tools that help security teams test applications more effectively.
       </p>
 
       <div class="buttons">
-        <a href="#projects">Current Threads</a>
-        <a href="#notes">Notes</a>
-        <a href="#about">About</a>
+        <a href="#featured">Featured Project</a>
+        <a href="#experiments">Experiments</a>
+        <a href="#writing">Writing</a>
       </div>
 
-      <section id="projects">
-        <h2>Current Threads</h2>
+      <section id="featured">
+        <h2>Featured Project</h2>
+
+        <div class="card">
+          <h3>FlowBusters</h3>
+          <p>
+            FlowBusters is an experimental security analysis platform that models
+            application workflows and automatically identifies potential attack paths.
+          </p>
+          <p>
+            The project combines workflow discovery, state analysis, and security testing
+            concepts to help engineers reason about how attackers may move through an application.
+          </p>
+          <a href="flowbusters.html">
+            View Project →
+          </a>
+        </div>
+      </section>
+
+      <section id="experiments">
+        <h2>Experiments</h2>
 
         <div class="grid">
           <div class="card">
-            <h3>FlowBusters</h3>
+            <h3>Agentic AI Security Testing</h3>
             <p>
-              A Playwright MCP-powered project for uncovering business logic flaws by
-              recording workflows, mapping state transitions, and generating adversarial probes.
-            </p>
-            <a href="flowbusters.html">
-              View Project →
-            </a>
-          </div>
-
-          <div class="card">
-            <h3>Offensive Security</h3>
-            <p>
-              Application security, attack paths, adversarial thinking, and practical security research.
+              Exploring how teams of specialized AI agents can collaborate to perform
+              white-box security reviews, identify vulnerabilities, and validate findings.
             </p>
           </div>
 
           <div class="card">
-            <h3>Continuous Learning</h3>
+            <h3>Security Automation</h3>
             <p>
-              OSCP journey, technical experimentation, and growing across different domains.
+              Building tools and workflows that reduce manual effort and improve the
+              efficiency of security testing.
             </p>
           </div>
         </div>
       </section>
 
-      <section id="notes">
-        <h2>Recent Notes</h2>
+      <section id="writing">
+        <h2>Writing</h2>
 
         <div class="card note-card">
           <div>
-            <h3>Notes coming soon.</h3>
+            <h3>Coming soon.</h3>
             <p>
-              Thoughts on security, AI, engineering, leadership, and the threads worth following.
+              Thoughts, experiments, and lessons learned from offensive security,
+              software engineering, and AI.
             </p>
           </div>
 
           <div class="thread-line"></div>
-        </div>
-      </section>
-
-      <section id="about" class="about">
-        <h2>About</h2>
-
-        <div class="card">
-          <p>
-            I am a Red Team Engineer with a background in software engineering and test automation.
-          </p>
-
-          <p>
-            I enjoy exploring how security, AI, and complex systems intersect.
-            Pulling Threads is a place for projects, technical notes, experiments,
-            and ideas worth investigating.
-          </p>
         </div>
       </section>
 
