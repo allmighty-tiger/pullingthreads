@@ -6,42 +6,60 @@
   <title>Pulling Threads</title>
 
   <style>
+    :root {
+      --bg: #07070d;
+      --text: #f5f5f7;
+      --muted: #cfcfd8;
+      --dim: #8f8f9d;
+      --gold: #D6A84F;
+      --gold-light: #E6C15A;
+      --line: rgba(214, 168, 79, 0.22);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
+      overflow-x: hidden;
       font-family: Arial, sans-serif;
-      background: #07070d;
-      color: #f5f5f7;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
     }
 
     .page {
       min-height: 100vh;
       position: relative;
-      overflow: hidden;
-      padding: 48px 24px;
+      padding: 48px 24px 70px;
     }
 
     .thread-art {
-      position: absolute;
+      position: fixed;
       top: 95px;
       left: 31%;
       width: 82%;
       height: 560px;
       z-index: 1;
       pointer-events: none;
-      opacity: 0.72;
+      opacity: 0.45;
     }
 
     .thread-art path {
       fill: none;
-      stroke: #D6A84F;
+      stroke: var(--gold);
       stroke-width: 1.25;
       stroke-linecap: round;
-      filter: drop-shadow(0 0 5px #D6A84F);
+      filter: drop-shadow(0 0 5px rgba(214, 168, 79, 0.45));
     }
 
     .thread-art path:nth-child(2n) {
-      stroke: #C99545;
+      stroke: var(--gold-light);
       stroke-width: 0.9;
       opacity: 0.75;
     }
@@ -52,8 +70,8 @@
     }
 
     .thread-art circle {
-      fill: #C99545;
-      filter: drop-shadow(0 0 10px #C99545);
+      fill: var(--gold-light);
+      filter: drop-shadow(0 0 10px rgba(214, 168, 79, 0.55));
     }
 
     .container {
@@ -74,22 +92,24 @@
     }
 
     .nav-links a {
-      color: #f5f5f7;
+      color: var(--text);
       text-decoration: none;
       margin-left: 28px;
       letter-spacing: 0.08em;
     }
 
-    .nav-links a:hover {
-      color: #D6A84F;
+    .nav-links a:hover,
+    .card a:hover {
+      color: var(--gold-light);
     }
 
-    .brand span {
-      color: #D6A84F;
+    .brand span,
+    .tag,
+    h2 {
+      color: var(--gold);
     }
 
     .tag {
-      color: #D6A84F;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       font-size: 13px;
@@ -104,14 +124,14 @@
     }
 
     h1 .accent {
-      color: #D6A84F;
-      text-shadow: 0 0 24px rgba(214,168,79,0.5);
+      color: var(--gold);
+      text-shadow: 0 0 24px rgba(214, 168, 79, 0.4);
     }
 
     .hero-text {
       max-width: 680px;
       font-size: 21px;
-      color: #d4d4dc;
+      color: var(--muted);
       margin-bottom: 36px;
     }
 
@@ -122,13 +142,13 @@
       border-radius: 10px;
       text-decoration: none;
       color: #fff;
-      border: 1px solid rgba(214,168,79,0.45);
-      background: rgba(214,168,79,0.10);
+      border: 1px solid rgba(214, 168, 79, 0.45);
+      background: rgba(214, 168, 79, 0.1);
     }
 
     .buttons a:hover {
-      background: rgba(214,168,79,0.24);
-      box-shadow: 0 0 18px rgba(214,168,79,0.35);
+      background: rgba(214, 168, 79, 0.22);
+      box-shadow: 0 0 18px rgba(214, 168, 79, 0.28);
     }
 
     section {
@@ -136,7 +156,6 @@
     }
 
     h2 {
-      color: #D6A84F;
       font-size: 18px;
       letter-spacing: 0.28em;
       text-transform: uppercase;
@@ -148,9 +167,9 @@
       display: block;
       width: 36px;
       height: 2px;
-      background: #D6A84F;
+      background: var(--gold);
       margin-top: 10px;
-      box-shadow: 0 0 12px rgba(214,168,79,0.8);
+      box-shadow: 0 0 12px rgba(214, 168, 79, 0.7);
     }
 
     .grid {
@@ -160,36 +179,31 @@
     }
 
     .card {
-      background: rgba(255,255,255,0.045);
-      border: 1px solid rgba(214,168,79,0.22);
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid var(--line);
       border-radius: 18px;
       padding: 26px;
-      box-shadow: 0 0 40px rgba(214,168,79,0.08);
+      box-shadow: 0 0 40px rgba(214, 168, 79, 0.06);
     }
 
     .card h3 {
       margin-top: 0;
-      color: #ffffff;
+      color: #fff;
       font-size: 24px;
       line-height: 1.2;
     }
 
     .card p,
     .about p {
-      color: #cfcfd8;
+      color: var(--muted);
     }
 
     .card a {
       display: inline-block;
       margin-top: 14px;
-      color: #D6A84F;
+      color: var(--gold);
       text-decoration: none;
       font-weight: bold;
-    }
-
-    .card a:hover {
-      color: #ffffff;
-      text-shadow: 0 0 12px rgba(214,168,79,0.8);
     }
 
     .note-card {
@@ -204,15 +218,20 @@
       height: 80px;
       opacity: 0.55;
       background:
-        radial-gradient(circle at 20% 50%, #D6A84F 0 3px, transparent 4px),
-        radial-gradient(circle at 55% 35%, #D6A84F 0 3px, transparent 4px),
-        radial-gradient(circle at 85% 55%, #D6A84F 0 3px, transparent 4px),
-        linear-gradient(120deg, transparent 0%, rgba(214,168,79,0.7) 35%, transparent 65%),
+        radial-gradient(circle at 20% 50%, var(--gold) 0 3px, transparent 4px),
+        radial-gradient(circle at 55% 35%, var(--gold) 0 3px, transparent 4px),
+        radial-gradient(circle at 85% 55%, var(--gold) 0 3px, transparent 4px),
+        linear-gradient(
+          120deg,
+          transparent 0%,
+          rgba(214, 168, 79, 0.7) 35%,
+          transparent 65%
+        ),
         repeating-linear-gradient(
           160deg,
           transparent 0px,
           transparent 18px,
-          rgba(214,168,79,0.35) 19px,
+          rgba(214, 168, 79, 0.35) 19px,
           transparent 21px
         );
     }
@@ -220,8 +239,8 @@
     footer {
       margin-top: 80px;
       padding-top: 28px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      color: #8f8f9d;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--dim);
       font-size: 14px;
       display: flex;
       justify-content: space-between;
@@ -249,7 +268,7 @@
         top: 165px;
         width: 120%;
         height: 420px;
-        opacity: 0.42;
+        opacity: 0.28;
       }
 
       .note-card {
@@ -265,7 +284,12 @@
 
 <body>
   <main class="page">
-    <svg class="thread-art" viewBox="0 0 900 520" preserveAspectRatio="none">
+    <svg
+      class="thread-art"
+      viewBox="0 0 900 520"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
       <g>
         <path d="M0 260 C180 120, 280 360, 420 210 S700 80, 900 180" />
         <path d="M0 300 C160 200, 300 180, 430 260 S650 420, 900 260" />
@@ -304,13 +328,13 @@
       <div class="tag">Security • AI • Engineering • Curiosity</div>
 
       <h1>
-        PULLING<br>
+        PULLING<br />
         <span class="accent">THREADS</span>
       </h1>
 
       <p class="hero-text">
-        Exploring security, AI systems, software engineering, and the ideas that emerge
-        when you start pulling on a thread.
+        Exploring security, AI systems, software engineering, and the ideas
+        that emerge when you start pulling on a thread.
       </p>
 
       <div class="buttons">
@@ -325,24 +349,33 @@
         <div class="grid">
           <div class="card">
             <h3>FlowBusters</h3>
+
             <p>
-              A Playwright MCP-powered project for uncovering business logic flaws by
-              recording workflows, mapping state transitions, and generating adversarial probes.
+              A Playwright MCP-powered project for uncovering business logic
+              flaws by recording workflows, mapping state transitions, and
+              generating adversarial probes.
             </p>
-            <a href="flowbusters.html">View Project →</a>
+
+            <a href="flowbusters.html">
+              View Project →
+            </a>
           </div>
 
           <div class="card">
             <h3>Offensive Security</h3>
+
             <p>
-              Application security, attack paths, adversarial thinking, and practical security research.
+              Application security, attack paths, adversarial thinking, and
+              practical security research.
             </p>
           </div>
 
           <div class="card">
             <h3>Continuous Learning</h3>
+
             <p>
-              OSCP journey, technical experimentation, and growing across different domains.
+              OSCP journey, technical experimentation, and growing across
+              different domains.
             </p>
           </div>
         </div>
@@ -354,8 +387,10 @@
         <div class="card note-card">
           <div>
             <h3>Notes coming soon.</h3>
+
             <p>
-              Thoughts on security, AI, engineering, leadership, and the threads worth following.
+              Thoughts on security, AI, engineering, leadership, and the
+              threads worth following.
             </p>
           </div>
 
@@ -368,13 +403,14 @@
 
         <div class="card">
           <p>
-            I am a Red Team Engineer with a background in software engineering and test automation.
+            I am a Red Team Engineer with a background in software engineering
+            and test automation.
           </p>
 
           <p>
             I enjoy exploring how security, AI, and complex systems intersect.
-            Pulling Threads is a place for projects, technical notes, experiments,
-            and ideas worth investigating.
+            Pulling Threads is a place for projects, technical notes,
+            experiments, and ideas worth investigating.
           </p>
         </div>
       </section>
