@@ -6,42 +6,62 @@
   <title>FlowBusters | Pulling Threads</title>
 
   <style>
+    :root {
+      --bg: #07070d;
+      --surface: rgba(255, 255, 255, 0.045);
+      --text: #f5f5f7;
+      --muted: #cfcfd8;
+      --dim: #8f8f9d;
+      --gold: #e6c15a;
+      --gold-bright: #ffe9a8;
+      --gold-dark: #c99b2e;
+      --line: rgba(230, 193, 90, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #07070d;
-      color: #f5f5f7;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
     }
 
     .page {
       min-height: 100vh;
-      padding: 48px 24px;
+      padding: 42px 24px 70px;
       overflow: hidden;
       position: relative;
     }
 
     .thread-art {
       position: absolute;
-      top: 70px;
-      right: -120px;
+      top: 80px;
+      right: -160px;
       width: 760px;
       height: 440px;
-      opacity: 0.35;
+      opacity: 0.22;
       pointer-events: none;
       z-index: 1;
     }
 
     .thread-art path {
       fill: none;
-      stroke: #b026ff;
+      stroke: var(--gold);
       stroke-width: 1.2;
-      filter: drop-shadow(0 0 5px #b026ff);
+      filter: drop-shadow(0 0 5px rgba(230, 193, 90, 0.45));
     }
 
     .thread-art circle {
-      fill: #d946ef;
-      filter: drop-shadow(0 0 10px #d946ef);
+      fill: var(--gold);
+      filter: drop-shadow(0 0 8px rgba(230, 193, 90, 0.5));
     }
 
     .container {
@@ -55,27 +75,29 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 90px;
+      margin-bottom: 76px;
       font-size: 14px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
     }
 
     nav a {
-      color: #f5f5f7;
+      color: var(--text);
       text-decoration: none;
     }
 
-    nav a:hover {
-      color: #c084fc;
+    nav a:hover,
+    .card a:hover {
+      color: var(--gold-bright);
     }
 
-    .brand span {
-      color: #c084fc;
+    .brand span,
+    .tag,
+    h2 {
+      color: var(--gold);
     }
 
     .tag {
-      color: #c084fc;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       font-size: 13px;
@@ -90,43 +112,66 @@
     }
 
     h1 span {
-      color: #a855f7;
-      text-shadow: 0 0 24px rgba(168,85,247,0.5);
+      color: var(--gold);
+      text-shadow: 0 0 24px rgba(230, 193, 90, 0.35);
     }
 
     .hero-text {
       max-width: 760px;
       font-size: 21px;
-      color: #d4d4dc;
-      margin-bottom: 34px;
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    .motto {
+      max-width: 760px;
+      margin: 0 0 30px;
+      padding-left: 18px;
+      border-left: 2px solid var(--gold-dark);
+      color: var(--gold-bright);
+      font-size: 18px;
+      font-style: italic;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .buttons a {
       display: inline-block;
-      margin: 8px 10px 8px 0;
-      padding: 12px 18px;
-      border-radius: 10px;
+      padding: 11px 17px;
+      border-radius: 8px;
       text-decoration: none;
-      color: #fff;
-      border: 1px solid rgba(192,132,252,0.45);
-      background: rgba(168,85,247,0.10);
+      color: var(--text);
+      border: 1px solid rgba(230, 193, 90, 0.45);
+      background: rgba(230, 193, 90, 0.08);
     }
 
     .buttons a:hover {
-      background: rgba(168,85,247,0.24);
-      box-shadow: 0 0 18px rgba(168,85,247,0.35);
+      background: rgba(230, 193, 90, 0.18);
+      box-shadow: 0 0 16px rgba(230, 193, 90, 0.2);
+    }
+
+    .banner {
+      width: 100%;
+      display: block;
+      margin-top: 62px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #0f0f23;
     }
 
     section {
-      margin-top: 74px;
+      margin-top: 76px;
     }
 
     h2 {
-      color: #c084fc;
       font-size: 18px;
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      margin-bottom: 22px;
+      margin: 0 0 24px;
     }
 
     h2::after {
@@ -134,91 +179,119 @@
       display: block;
       width: 36px;
       height: 2px;
-      background: #c084fc;
+      background: var(--gold);
       margin-top: 10px;
-      box-shadow: 0 0 12px rgba(192,132,252,0.8);
+      box-shadow: 0 0 10px rgba(230, 193, 90, 0.55);
     }
 
     .card {
-      background: rgba(255,255,255,0.045);
-      border: 1px solid rgba(192,132,252,0.22);
-      border-radius: 18px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
       padding: 26px;
-      box-shadow: 0 0 40px rgba(168,85,247,0.08);
+    }
+
+    .card p,
+    li {
+      color: var(--muted);
+    }
+
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .workflow {
+      width: 100%;
+      display: block;
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+
+    .workflow text {
+      font-family: Arial, sans-serif;
+      fill: var(--text);
+    }
+
+    .workflow .box {
+      fill: rgba(230, 193, 90, 0.09);
+      stroke: rgba(230, 193, 90, 0.65);
+      stroke-width: 1.4;
+    }
+
+    .workflow .arrow {
+      stroke: var(--gold);
+      stroke-width: 2;
+      fill: none;
+      marker-end: url(#arrowhead);
+    }
+
+    .workflow .label {
+      fill: var(--gold-bright);
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    .workflow .small {
+      fill: var(--muted);
+      font-size: 13px;
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
+      gap: 16px;
     }
 
-    .card h3 {
+    .grid .card h3 {
       margin-top: 0;
-      color: #fff;
-      font-size: 23px;
+      color: var(--gold-bright);
+      font-size: 21px;
     }
 
-    .card p,
-    li {
-      color: #cfcfd8;
+    .phase-number {
+      color: var(--gold-dark);
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
     }
 
-    .workflow {
-      width: 100%;
-      margin-top: 8px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(192,132,252,0.22);
+    .artifact {
+      color: var(--gold-bright);
+      font-family: monospace;
+      font-size: 14px;
     }
 
-    .workflow text {
-      font-family: Arial, sans-serif;
-      fill: #f5f5f7;
-    }
-
-    .box {
-      fill: rgba(168,85,247,0.11);
-      stroke: rgba(192,132,252,0.75);
-      stroke-width: 1.4;
-      rx: 14;
-      filter: drop-shadow(0 0 8px rgba(168,85,247,0.35));
-    }
-
-    .arrow {
-      stroke: #c084fc;
-      stroke-width: 2;
-      fill: none;
-      marker-end: url(#arrowhead);
-      filter: drop-shadow(0 0 5px #a855f7);
-    }
-
-    .small {
-      fill: #cfcfd8;
-      font-size: 13px;
-    }
-
-    .label {
-      fill: #ffffff;
+    .tale {
+      color: var(--muted);
       font-size: 17px;
-      font-weight: bold;
+      line-height: 1.8;
+    }
+
+    .tale strong {
+      color: var(--gold-bright);
     }
 
     .terminal {
-      background: rgba(0,0,0,0.45);
-      border: 1px solid rgba(192,132,252,0.25);
-      border-radius: 14px;
+      margin: 0;
       padding: 18px;
-      color: #d8b4fe;
       overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.42);
+      color: var(--gold-bright);
       font-size: 14px;
+    }
+
+    .warning {
+      border-left: 3px solid var(--gold-dark);
     }
 
     footer {
       margin-top: 80px;
       padding-top: 28px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      color: #8f8f9d;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--dim);
       font-size: 14px;
       display: flex;
       justify-content: space-between;
@@ -229,7 +302,7 @@
     @media (max-width: 720px) {
       nav {
         display: block;
-        margin-bottom: 64px;
+        margin-bottom: 60px;
       }
 
       nav a {
@@ -238,9 +311,13 @@
       }
 
       .thread-art {
-        right: -260px;
-        top: 120px;
-        opacity: 0.25;
+        right: -300px;
+        top: 150px;
+        opacity: 0.14;
+      }
+
+      .hero-text {
+        font-size: 18px;
       }
     }
   </style>
@@ -265,68 +342,152 @@
         <a href="index.html">← Back Home</a>
       </nav>
 
-      <div class="tag">Featured Thread</div>
+      <div class="tag">🏴‍☠️ Featured Security Experiment</div>
 
       <h1>Flow<span>Busters</span></h1>
 
       <p class="hero-text">
-        FlowBusters is an experimental security project for finding business logic flaws.
-        Instead of only scanning endpoints, it follows the workflow itself: record the flow,
-        analyze state transitions, generate adversarial probes, and report confirmed logic issues.
+        FlowBusters is an experimental proof of concept for discovering
+        business-logic flaws from one recorded browser workflow.
+      </p>
+
+      <p class="motto">
+        “The lock was only painted.”
       </p>
 
       <div class="buttons">
-        <a href="https://github.com/allmighty-tiger/FlowBusters" target="_blank">View GitHub Repo →</a>
-        <a href="#workflow">See Workflow</a>
+        <a
+          href="https://github.com/allmighty-tiger/FlowBusters"
+          target="_blank"
+          rel="noopener"
+        >
+          View GitHub Repo →
+        </a>
+
+        <a href="#workflow">See the Workflow</a>
+        <a href="#tall-tale">Read the Tall Tale</a>
       </div>
 
+      <img
+        class="banner"
+        src="https://raw.githubusercontent.com/allmighty-tiger/FlowBusters/main/assets/flowbusters-banner.svg"
+        alt="FlowBusters — The lock was only painted"
+      />
+
       <section>
-        <h2>Why It Exists</h2>
+        <h2>What It Does</h2>
 
         <div class="card">
           <p>
-            Many apps pass unit tests, automated scans, and standard penetration tests, but still fail
-            when users abuse the intended business process. FlowBusters focuses on the multi-step rules
-            an application assumes users will follow, but may not enforce server-side.
+            FlowBusters records a legitimate workflow in a headed Chromium
+            browser, captures the related HTTP traffic, analyzes state
+            transitions, generates adversarial business-logic tests, executes
+            HTTP probes against an authorized target, and produces
+            evidence-backed findings.
+          </p>
+
+          <p>
+            The goal is to test whether the application enforces its workflow
+            rules on the server — not merely whether the expected user
+            interface behaves correctly.
           </p>
         </div>
       </section>
 
       <section id="workflow">
-        <h2>Workflow</h2>
+        <h2>Record → Analyze → Mutate → Probe → Report</h2>
 
-        <svg class="workflow" viewBox="0 0 980 360" role="img" aria-label="FlowBusters workflow diagram">
+        <svg
+          class="workflow"
+          viewBox="0 0 980 430"
+          role="img"
+          aria-label="FlowBusters workflow from recording to reporting"
+        >
           <defs>
-            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-              <path d="M0,0 L0,6 L9,3 z" fill="#c084fc"></path>
+            <marker
+              id="arrowhead"
+              markerWidth="10"
+              markerHeight="10"
+              refX="8"
+              refY="3"
+              orient="auto"
+            >
+              <path d="M0,0 L0,6 L9,3 z" fill="#e6c15a"></path>
             </marker>
           </defs>
 
-          <rect class="box" x="40" y="70" width="180" height="110"></rect>
-          <text class="label" x="80" y="115">1. Record</text>
-          <text class="small" x="68" y="145">Browser workflow</text>
-          <text class="small" x="68" y="165">demo.json + HAR</text>
+          <rect class="box" x="40" y="70" width="160" height="110" rx="12" />
+          <text class="label" x="78" y="112">🎥 Record</text>
+          <text class="small" x="67" y="142">Real browser flow</text>
+          <text class="small" x="67" y="163">demo.json + HAR</text>
 
-          <path class="arrow" d="M230 125 C270 125, 285 125, 320 125"></path>
+          <path class="arrow" d="M210 125 C245 125 260 125 295 125" />
 
-          <rect class="box" x="330" y="70" width="180" height="110"></rect>
-          <text class="label" x="370" y="115">2. Analyze</text>
-          <text class="small" x="360" y="145">State transitions</text>
-          <text class="small" x="360" y="165">critical endpoints</text>
+          <rect class="box" x="305" y="70" width="160" height="110" rx="12" />
+          <text class="label" x="340" y="112">🔍 Analyze</text>
+          <text class="small" x="332" y="142">Requests + roles</text>
+          <text class="small" x="332" y="163">state_map.json</text>
 
-          <path class="arrow" d="M520 125 C560 125, 575 125, 610 125"></path>
+          <path class="arrow" d="M475 125 C510 125 525 125 560 125" />
 
-          <rect class="box" x="620" y="70" width="180" height="110"></rect>
-          <text class="label" x="660" y="115">3. Mutate</text>
-          <text class="small" x="646" y="145">Skip step, replay,</text>
-          <text class="small" x="646" y="165">tamper, role swap</text>
+          <rect class="box" x="570" y="70" width="160" height="110" rx="12" />
+          <text class="label" x="608" y="112">🧨 Mutate</text>
+          <text class="small" x="592" y="142">Adversarial tests</text>
+          <text class="small" x="592" y="163">generated probes</text>
 
-          <path class="arrow" d="M710 190 C710 245, 500 245, 500 275"></path>
+          <path class="arrow" d="M740 125 C775 125 790 125 825 125" />
 
-          <rect class="box" x="395" y="245" width="210" height="90"></rect>
-          <text class="label" x="444" y="283">4. Probe</text>
-          <text class="small" x="426" y="310">Findings + remediation</text>
+          <rect class="box" x="835" y="70" width="105" height="110" rx="12" />
+          <text class="label" x="850" y="112">🔎 Probe</text>
+          <text class="small" x="850" y="142">HTTP tests</text>
+          <text class="small" x="850" y="163">results</text>
+
+          <path class="arrow" d="M885 195 C885 285 670 285 670 330" />
+
+          <rect class="box" x="500" y="325" width="230" height="75" rx="12" />
+          <text class="label" x="550" y="358">📜 Report</text>
+          <text class="small" x="536" y="382">
+            findings.json + remediation.md
+          </text>
         </svg>
+      </section>
+
+      <section>
+        <h2>Assessment Artifacts</h2>
+
+        <div class="grid">
+          <div class="card">
+            <div class="phase-number">01 / Record</div>
+            <h3 class="artifact">demo.json</h3>
+            <p>
+              The recorded browser workflow and interaction sequence.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="phase-number">02 / Capture</div>
+            <h3 class="artifact">recording.har</h3>
+            <p>
+              HTTP traffic observed while the legitimate workflow was performed.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="phase-number">03 / Map</div>
+            <h3 class="artifact">state_map.json</h3>
+            <p>
+              Inferred workflow states, transitions, roles, and important endpoints.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="phase-number">04 / Report</div>
+            <h3 class="artifact">findings.json</h3>
+            <p>
+              Probe outcomes, evidence, classifications, and remediation notes.
+            </p>
+          </div>
+        </div>
       </section>
 
       <section>
@@ -335,35 +496,103 @@
         <div class="grid">
           <div class="card">
             <h3>Skip Step</h3>
-            <p>Jump directly to a later endpoint without completing required workflow prerequisites.</p>
+            <p>
+              Bypass a required workflow prerequisite and call a later endpoint directly.
+            </p>
           </div>
 
           <div class="card">
             <h3>Role Swap</h3>
-            <p>Try one role’s session context against another role’s expected actions.</p>
+            <p>
+              Use one role’s session context against another role’s expected action.
+            </p>
           </div>
 
           <div class="card">
             <h3>Data Tamper</h3>
-            <p>Mutate request body values such as IDs, amounts, statuses, or ownership-sensitive fields.</p>
+            <p>
+              Change identifiers, amounts, statuses, or ownership-sensitive values.
+            </p>
           </div>
 
           <div class="card">
-            <h3>Replay</h3>
-            <p>Re-fire a captured request after the workflow should no longer allow it.</p>
+            <h3>Mass Assignment</h3>
+            <p>
+              Submit privileged fields that are hidden or unavailable in the UI.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Double Spend</h3>
+            <p>
+              Repeat an operation sequentially or concurrently when it should be one-time.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Forced Browsing</h3>
+            <p>
+              Call a workflow endpoint without following the intended browser flow.
+            </p>
           </div>
         </div>
       </section>
 
-      <section>
-        <h2>Example Command</h2>
+      <section id="tall-tale">
+        <h2>🏴‍☠️ A Tall Tale of the FlowShip</h2>
 
-        <pre class="terminal"><code>Captain, run FlowBusters against https://your-app.example.com/workflow</code></pre>
+        <div class="card tale">
+          <p>
+            It was the year of our Captain, 1719, when a small crew of very
+            serious software engineers sailed aboard the FlowShip and
+            discovered that locks on the web are mostly for show.
+          </p>
+
+          <p>
+            The Recorder walked the shop end to end and wrote every request
+            down. The Analyst drew a map of the ship’s hold. Then the Saboteur
+            built cursed little scripts to skip steps, swap roles, tamper with
+            prices, replay requests, and walk straight into the Captain’s cabin.
+          </p>
+
+          <p>
+            <strong>
+              “A lock that only the honest obey is not a lock at all. It is a suggestion.”
+            </strong>
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Quickstart Concept</h2>
+
+        <pre class="terminal"><code>Start assessment
+→ perform an authorized workflow in Chromium
+→ select “Finish recording”
+→ review generated tests and findings</code></pre>
+      </section>
+
+      <section>
+        <h2>Important</h2>
+
+        <div class="card warning">
+          <p>
+            FlowBusters is an experimental MVP and is not production-ready.
+            Use it only against non-production systems that you own or have
+            explicit permission to test.
+          </p>
+
+          <p>
+            Generated probes may produce false positives or invalid assumptions.
+            Findings require human review. HAR files, tokens, scripts, and
+            reports must be treated as sensitive data.
+          </p>
+        </div>
       </section>
 
       <footer>
         <span>© 2026 Pulling Threads</span>
-        <span>FlowBusters · Business logic security testing</span>
+        <span>FlowBusters · The lock was only painted.</span>
       </footer>
     </div>
   </main>
