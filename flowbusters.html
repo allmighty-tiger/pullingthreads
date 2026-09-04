@@ -163,6 +163,22 @@
       background: #0f0f23;
     }
 
+    .demo-video {
+      width: 100%;
+      display: block;
+      margin-top: 34px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #0b0a1d;
+      box-shadow: 0 0 40px rgba(230, 193, 90, 0.08);
+    }
+
+    .video-caption {
+      color: var(--dim);
+      font-size: 13px;
+      margin: 10px 0 0;
+    }
+
     section {
       margin-top: 76px;
     }
@@ -373,6 +389,15 @@
         src="https://raw.githubusercontent.com/allmighty-tiger/FlowBusters/main/assets/flowbusters-banner.svg"
         alt="FlowBusters — The lock was only painted"
       />
+
+      <video class="demo-video" controls preload="metadata">
+        <source
+          src="https://raw.githubusercontent.com/allmighty-tiger/FlowBusters/main/assets/demo.mp4"
+          type="video/mp4"
+        />
+        Your browser does not support the video element.
+      </video>
+      <p class="video-caption">A short walkthrough of FlowBusters in action.</p>
 
       <section>
         <h2>What It Does</h2>
