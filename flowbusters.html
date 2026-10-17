@@ -336,6 +336,7 @@
         font-size: 18px;
       }
     }
+  section > p { color: var(--muted); }
   </style>
 </head>
 
@@ -362,10 +363,7 @@
 
       <h1>Flow<span>Busters</span></h1>
 
-      <p class="hero-text">
-        FlowBusters is an experimental proof of concept for discovering
-        business-logic flaws from one recorded browser workflow.
-      </p>
+      <p class="hero-text">FlowBusters is a security research proof of concept that uses AI agents to propose business-logic abuse tests from recorded browser workflows, with backend execution and evidence verification.</p>
 
       <p class="motto">
         “The lock was only painted.”
@@ -399,25 +397,7 @@
       </video>
       <p class="video-caption">A short walkthrough of FlowBusters in action.</p>
 
-      <section>
-        <h2>What It Does</h2>
-
-        <div class="card">
-          <p>
-            FlowBusters records a legitimate workflow in a headed Chromium
-            browser, captures the related HTTP traffic, analyzes state
-            transitions, generates adversarial business-logic tests, executes
-            HTTP probes against an authorized target, and produces
-            evidence-backed findings.
-          </p>
-
-          <p>
-            The goal is to test whether the application enforces its workflow
-            rules on the server — not merely whether the expected user
-            interface behaves correctly.
-          </p>
-        </div>
-      </section>
+      <section><h2>What It Does</h2><div class="card"><p>FlowBusters captures UI snapshots and HTTP traffic while you perform legitimate workflows in Chromium through Playwright MCP. AI agents analyze the evidence, build a state map, infer candidate business rules, and propose structured test plans using relevant attack patterns.</p><p>The backend validates test plans against the configured scope and recorded evidence, generates and executes supported HTTP probes, and checks the resulting application state against the rule being tested.</p><p>Testing can focus on one workflow or combine actions from multiple recorded workflows that share application state. The goal is to identify unsafe outcomes caused by missing prerequisites, inconsistent state checks, or interactions between otherwise legitimate operations.</p><p><strong>AI proposes. The backend executes and verifies. A human reviews whether the inferred rule reflects the intended business behavior.</strong></p></div></section>
 
       <section id="workflow">
         <h2>Record → Analyze → Mutate → Probe → Report</h2>
@@ -450,22 +430,22 @@
 
           <rect class="box" x="305" y="70" width="160" height="110" rx="12" />
           <text class="label" x="340" y="112">🔍 Analyze</text>
-          <text class="small" x="332" y="142">Requests + roles</text>
+          <text class="small" x="332" y="142">UI + HTTP evidence</text>
           <text class="small" x="332" y="163">state_map.json</text>
 
           <path class="arrow" d="M475 125 C510 125 525 125 560 125" />
 
           <rect class="box" x="570" y="70" width="160" height="110" rx="12" />
           <text class="label" x="608" y="112">🧨 Mutate</text>
-          <text class="small" x="592" y="142">Adversarial tests</text>
-          <text class="small" x="592" y="163">generated probes</text>
+          <text class="small" x="592" y="142">AI test plans</text>
+          <text class="small" x="592" y="163">test hypotheses</text>
 
           <path class="arrow" d="M740 125 C775 125 790 125 825 125" />
 
           <rect class="box" x="835" y="70" width="105" height="110" rx="12" />
           <text class="label" x="850" y="112">🔎 Probe</text>
-          <text class="small" x="850" y="142">HTTP tests</text>
-          <text class="small" x="850" y="163">results</text>
+          <text class="small" x="850" y="142">Backend tests</text>
+          <text class="small" x="850" y="163">verified results</text>
 
           <path class="arrow" d="M885 195 C885 285 670 285 670 330" />
 
@@ -477,91 +457,9 @@
         </svg>
       </section>
 
-      <section>
-        <h2>Assessment Artifacts</h2>
+      <section><h2>Assessment Artifacts</h2><div class="grid"><div class="card"><div class="phase-number">01 / Record</div><h3 class="artifact">demo.json</h3><p>UI snapshots and recorded interface context, including visible controls, page changes, and workflow states.</p></div><div class="card"><div class="phase-number">02 / Capture</div><h3 class="artifact">recording.har</h3><p>HTTP requests and responses observed while authorized workflows were performed.</p></div><div class="card"><div class="phase-number">03 / Map</div><h3 class="artifact">state_map.json</h3><p>AI-inferred states, transitions, roles, and endpoints, linked to source evidence.</p></div><div class="card"><div class="phase-number">04 / Plan</div><h3 class="artifact">Test plans</h3><p>Structured hypotheses describing actions, setup, evidence references, and the rule to check.</p></div><div class="card"><div class="phase-number">05 / Execute</div><h3 class="artifact">Probe scripts + execution logs</h3><p>Backend-generated HTTP probes and execution records containing requests, responses, and observed application state.</p></div><div class="card"><div class="phase-number">06 / Report</div><h3 class="artifact">findings.json</h3><p>Verified outcomes and supporting evidence, with AI-suggested classifications and remediation for human review.</p></div></div></section>
 
-        <div class="grid">
-          <div class="card">
-            <div class="phase-number">01 / Record</div>
-            <h3 class="artifact">demo.json</h3>
-            <p>
-              The recorded browser workflow and interaction sequence.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="phase-number">02 / Capture</div>
-            <h3 class="artifact">recording.har</h3>
-            <p>
-              HTTP traffic observed while the legitimate workflow was performed.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="phase-number">03 / Map</div>
-            <h3 class="artifact">state_map.json</h3>
-            <p>
-              Inferred workflow states, transitions, roles, and important endpoints.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="phase-number">04 / Report</div>
-            <h3 class="artifact">findings.json</h3>
-            <p>
-              Probe outcomes, evidence, classifications, and remediation notes.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2>Attack Ideas</h2>
-
-        <div class="grid">
-          <div class="card">
-            <h3>Skip Step</h3>
-            <p>
-              Bypass a required workflow prerequisite and call a later endpoint directly.
-            </p>
-          </div>
-
-          <div class="card">
-            <h3>Role Swap</h3>
-            <p>
-              Use one role’s session context against another role’s expected action.
-            </p>
-          </div>
-
-          <div class="card">
-            <h3>Data Tamper</h3>
-            <p>
-              Change identifiers, amounts, statuses, or ownership-sensitive values.
-            </p>
-          </div>
-
-          <div class="card">
-            <h3>Mass Assignment</h3>
-            <p>
-              Submit privileged fields that are hidden or unavailable in the UI.
-            </p>
-          </div>
-
-          <div class="card">
-            <h3>Double Spend</h3>
-            <p>
-              Repeat an operation sequentially or concurrently when it should be one-time.
-            </p>
-          </div>
-
-          <div class="card">
-            <h3>Forced Browsing</h3>
-            <p>
-              Call a workflow endpoint without following the intended browser flow.
-            </p>
-          </div>
-        </div>
-      </section>
+      <section><h2>Attack Patterns</h2><p>Attack patterns guide hypothesis generation. Agents suggest relevant tests from the recorded states and transitions; a pattern is not itself a finding, and not every pattern applies to every assessment.</p><div class="grid"><div class="card"><h3>Skip Step</h3><p>Attempt a later workflow action without completing a required prerequisite.</p></div><div class="card"><h3>Role Swap</h3><p>Attempt an action using another user or role context, where the required authorized sessions are available.</p></div><div class="card"><h3>Data Tamper</h3><p>Modify identifiers, statuses, or other values that affect workflow state or ownership.</p></div><div class="card"><h3>Mass Assignment</h3><p>Submit fields that the user should not be allowed to control, including fields unavailable in the UI.</p></div><div class="card"><h3>Pricing Tamper</h3><p>Manipulate submitted prices, discounts, or other inputs used to calculate a financial amount.</p></div><div class="card"><h3>Double Spend</h3><p>Attempt to obtain repeated financial value from an operation that should only provide it once.</p></div><div class="card"><h3>Replay Attack</h3><p>Resubmit a previously valid request after it should no longer be accepted.</p></div><div class="card"><h3>Forced Browsing</h3><p>Directly request a resource or endpoint that should be restricted by server-side access checks.</p></div></div></section><section id="cross-flow"><h2>Cross-flow Analysis</h2><div class="card"><p>Some business-logic flaws appear only when separate workflows interact. FlowBusters can combine actions from selected recordings into a shared state map and propose tests that cross workflow boundaries, while preserving references to the source evidence.</p><p>For example, a price adjustment and a refund may each appear valid in isolation. Combined, they may return more money than the customer originally paid.</p><p>Test actions remain tied to captured requests and configured scope. An unrecorded UI action can suggest an investigation, but its visibility alone does not supply an executable API request.</p></div></section><section id="verification"><h2>Execution &amp; Verification</h2><div class="card"><p>Before execution, the backend checks the proposed plan against scope, supported request methods and endpoints, valid fields, source evidence, and supported rule checks. Tests require an independent setup so that earlier probes do not contaminate later results.</p><p>After execution, the backend checks the execution log, the actual HTTP requests and responses, and before-and-after application state. The final state is checked against the rule being tested. A successful HTTP response alone does not prove a vulnerability.</p><p>For a refund test, that can mean checking whether the total amount returned exceeds the original payment.</p></div><div class="grid" style="margin-top:16px"><div class="card"><h3>CONFIRMED</h3><p>The executed test and verified evidence demonstrate a violation of the tested rule.</p></div><div class="card"><h3>NOT REPRODUCED</h3><p>The executed test did not reproduce the proposed violation. This does not establish that the application is secure.</p></div><div class="card"><h3>NEEDS REVIEW</h3><p>The available evidence or evaluation is inconclusive and requires human investigation.</p></div></div><p>These are the main assessment outcomes. Unsupported tests, execution errors, and check errors must remain distinguishable from confirmed findings. Business rules inferred by AI, severity, CWE mappings, and remediation suggestions require human review.</p></section>
       <section id="tall-tale">
         <h2>🏴‍☠️ A Tall Tale of the FlowShip</h2>
       
@@ -587,14 +485,11 @@
         </div>
       </section>
 
-      <section>
-        <h2>Quickstart Concept</h2>
-
-        <pre class="terminal"><code>Start assessment
+      <section><h2>Quickstart Concept</h2><pre class="terminal"><code>Start an assessment within the configured scope
 → perform an authorized workflow in Chromium
 → select “Finish recording”
-→ review generated tests and findings</code></pre>
-      </section>
+→ AI proposes tests; the backend validates, executes, and verifies
+→ review outcomes, evidence, and inferred business rules</code></pre><p>For cross-flow analysis, select multiple recorded workflows that share application state.</p></section>
 
       <section>
         <h2>Important</h2>
