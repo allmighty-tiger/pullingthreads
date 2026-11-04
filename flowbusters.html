@@ -384,18 +384,18 @@
 
       <img
         class="banner"
-        src="https://raw.githubusercontent.com/allmighty-tiger/FlowBusters/main/assets/flowbusters-banner.svg"
+        src="assets/flowbusters-banner.svg"
         alt="FlowBusters — The lock was only painted"
       />
 
-      <video class="demo-video" controls preload="metadata">
+      <video class="demo-video" controls muted playsinline preload="metadata" poster="assets/flowbusters-demo-poster.jpg" aria-label="FlowBusters demo: recorded refund workflow, automated testing, and a confirmed double payout">
         <source
-          src="https://raw.githubusercontent.com/allmighty-tiger/FlowBusters/main/assets/demo.mp4"
+          src="assets/flowbusters-demo.mp4"
           type="video/mp4"
         />
-        Your browser does not support the video element.
+        Your browser does not support the video element. <a href="assets/flowbusters-demo.mp4">Download the FlowBusters demo</a>.
       </video>
-      <p class="video-caption">A short walkthrough of FlowBusters in action.</p>
+      <p class="video-caption">Silent, edited demo using a synthetic application. Record a refund workflow, generate and execute tests, then inspect a confirmed double payout: $200 returned on a $100 purchase. Waiting periods are removed.</p>
 
       <section><h2>What It Does</h2><div class="card"><p>FlowBusters captures UI snapshots and HTTP traffic while you perform legitimate workflows in Chromium through Playwright MCP. AI agents analyze the evidence, build a state map, infer candidate business rules, and propose structured test plans using relevant attack patterns.</p><p>The backend validates test plans against the configured scope and recorded evidence, generates and executes supported HTTP probes, and checks the resulting application state against the rule being tested.</p><p>Testing can focus on one workflow or combine actions from multiple recorded workflows that share application state. The goal is to identify unsafe outcomes caused by missing prerequisites, inconsistent state checks, or interactions between otherwise legitimate operations.</p><p><strong>AI proposes. The backend executes and verifies. A human reviews whether the inferred rule reflects the intended business behavior.</strong></p></div></section>
 
