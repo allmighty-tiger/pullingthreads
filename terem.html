@@ -42,6 +42,7 @@
     .facts { display:flex; flex-wrap:wrap; gap:12px 30px; border-block:1px solid var(--line); padding:18px 0; margin-top:48px; color:var(--muted); font-size:13px; }
     .facts strong { color:var(--bright); }
     section { margin-top:88px; }
+    #team { margin-top:0; margin-bottom:clamp(48px, 7vw, 88px); }
     h2 { margin:0 0 22px; font-size:clamp(25px,4vw,36px); line-height:1.2; letter-spacing:-.025em; }
     h3 { margin:0 0 10px; font-size:19px; line-height:1.3; }
     p { color:var(--muted); }
@@ -96,6 +97,22 @@
       <div class="nav-links"><a href="#team">The team</a><a href="#method">The method</a><a href="index.html#projects">← All projects</a></div>
     </nav>
     <main id="main">
+      <section id="team" aria-labelledby="team-title">
+        <p class="eyebrow" style="text-transform:none">Meet TEREMOK's inhabitants</p>
+        <h2 id="team-title">Eight characters. Distinct responsibilities.</h2>
+        <p class="section-intro">The fairy-tale names give the team a personality. Source evidence and review rules govern its conclusions.</p>
+        <div class="team">
+          <article class="agent"><img src="assets/terem-agents/vasilisa.svg" width="134" height="134" alt="" loading="lazy" decoding="async"><h3>Vasilisa</h3><span class="role">Lead &amp; orchestrator</span><p>Owns scope, the initial inventory, work routing, triage, and the final report.</p></article>
+          <article class="agent"><img src="assets/terem-agents/volk.svg" width="134" height="134" alt="" loading="lazy" decoding="async"><h3>Volk</h3><span class="role">Web application security</span><p>Hunts for injection, object access flaws, unsafe inputs, and overlooked application paths.</p></article>
+          <article class="agent"><img src="assets/terem-agents/yaga.svg" width="134" height="134" alt="" loading="lazy" decoding="async"><h3>Yaga</h3><span class="role">Identity &amp; access</span><p>Reviews authentication, authorization, tokens, sessions, and trust boundaries.</p></article>
+          <article class="agent"><img src="assets/terem-agents/gorynych.svg" width="134" height="134" alt="" loading="lazy" decoding="async"><h3>Gorynych</h3><span class="role">Infrastructure &amp; cloud</span><p>Reviews cloud and container configuration, proxies, secrets, and CI/CD.</p></article>
+          <article class="agent"><img src="assets/terem-agents/leshy.svg" width="134" height="134" alt="" loading="lazy" decoding="async"><h3>Leshy</h3><span class="role">Codebase reconnaissance</span><p>Maps the codebase, dependencies, and connections that other reviewers may overlook.</p></article>
+          <article class="agent"><img src="assets/terem-agents/koschei.svg" width="134" height="134" alt="" loading="lazy" decoding="async"><h3>Koschei</h3><span class="role">Root causes &amp; attack chains</span><p>Connects candidate weaknesses into source-backed paths and checks every hop.</p></article>
+          <article class="agent"><img src="assets/terem-agents/mirror.svg" width="134" height="134" alt="" loading="lazy" decoding="async"><h3>Mirror</h3><span class="role">Independent validation</span><p>Challenges evidence, exploitability, severity, and mitigations through five gates.</p></article>
+          <article class="agent"><img src="assets/terem-agents/kot.svg" width="134" height="134" alt="" loading="lazy" decoding="async"><h3>Kot</h3><span class="role">Memory &amp; documentation</span><p>Preserves decisions, handoffs, coverage, and the team's session history.</p></article>
+        </div>
+      </section>
+
       <header class="hero">
         <div class="hero-copy">
           <p class="eyebrow">AI × White-box security research</p>
@@ -144,22 +161,6 @@
           <li><h3>Challenge the evidence</h3><p>Mirror independently applies all five validation gates to standalone candidates and complete chains.</p></li>
           <li><h3>Report &amp; preserve</h3><p>Vasilisa assembles validated findings and manual verification steps. Kot preserves decisions, coverage, and session records.</p></li>
         </ol>
-      </section>
-
-      <section id="team" aria-labelledby="team-title">
-        <p class="eyebrow">Meet the inhabitants</p>
-        <h2 id="team-title">Eight characters. Distinct responsibilities.</h2>
-        <p class="section-intro">The fairy-tale names give the team a personality. Source evidence and review rules govern its conclusions.</p>
-        <div class="team">
-          <article class="agent"><img src="assets/terem-agents/vasilisa.svg" width="134" height="134" alt="" loading="lazy" decoding="async"><h3>Vasilisa</h3><span class="role">Lead &amp; orchestrator</span><p>Owns scope, the initial inventory, work routing, triage, and the final report.</p></article>
-          <article class="agent"><img src="assets/terem-agents/volk.svg" width="134" height="134" alt="" loading="lazy" decoding="async"><h3>Volk</h3><span class="role">Web application security</span><p>Hunts for injection, object access flaws, unsafe inputs, and overlooked application paths.</p></article>
-          <article class="agent"><img src="assets/terem-agents/yaga.svg" width="134" height="134" alt="" loading="lazy" decoding="async"><h3>Yaga</h3><span class="role">Identity &amp; access</span><p>Reviews authentication, authorization, tokens, sessions, and trust boundaries.</p></article>
-          <article class="agent"><img src="assets/terem-agents/gorynych.svg" width="134" height="134" alt="" loading="lazy" decoding="async"><h3>Gorynych</h3><span class="role">Infrastructure &amp; cloud</span><p>Reviews cloud and container configuration, proxies, secrets, and CI/CD.</p></article>
-          <article class="agent"><img src="assets/terem-agents/leshy.svg" width="134" height="134" alt="" loading="lazy" decoding="async"><h3>Leshy</h3><span class="role">Codebase reconnaissance</span><p>Maps the codebase, dependencies, and connections that other reviewers may overlook.</p></article>
-          <article class="agent"><img src="assets/terem-agents/koschei.svg" width="134" height="134" alt="" loading="lazy" decoding="async"><h3>Koschei</h3><span class="role">Root causes &amp; attack chains</span><p>Connects candidate weaknesses into source-backed paths and checks every hop.</p></article>
-          <article class="agent"><img src="assets/terem-agents/mirror.svg" width="134" height="134" alt="" loading="lazy" decoding="async"><h3>Mirror</h3><span class="role">Independent validation</span><p>Challenges evidence, exploitability, severity, and mitigations through five gates.</p></article>
-          <article class="agent"><img src="assets/terem-agents/kot.svg" width="134" height="134" alt="" loading="lazy" decoding="async"><h3>Kot</h3><span class="role">Memory &amp; documentation</span><p>Preserves decisions, handoffs, coverage, and the team's session history.</p></article>
-        </div>
       </section>
 
       <section id="validation" aria-labelledby="validation-title">
