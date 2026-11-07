@@ -1,14 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-  <title>Pulling Threads — PT thread spools</title>
+  <title>Pulling Threads — PT with a thread-spool T</title>
   <rect width="64" height="64" rx="13" fill="#090910" />
-  <!-- P: a spool stem with a clearly defined letter bowl. -->
   <path d="M9 51V13h11c19 0 19 24 0 24h-4v14Zm7-31v10h4c9 0 9-10 0-10Z" fill="#edc568" fill-rule="evenodd" />
-  <path d="M5 11h15v5H5Zm0 38h15v5H5Z" fill="#edc568" />
   <!-- T: a wide top rim, straight stem, and a narrow lower rim. -->
   <path d="M36 11h24v8h-9v30h4v5H40v-5h4V19h-8Z" fill="#edc568" />
   <!-- Thread wraps remain bold enough to survive a 16px rendering. -->
   <g fill="none" stroke="#ff2438" stroke-width="3" stroke-linecap="round">
-    <path d="m9 36 7 3-7 3 7 3" />
     <path d="m44 25 7 4-7 4 7 4-7 4 7 4" />
   </g>
 </svg>
