@@ -1,8 +1,5 @@
-/* Shared wordmark color for every visible occurrence of “Threads”. */
-body span.threads-word {
-  color: #ff666b;
-}
-
-h1 .accent:has(.threads-word) {
-  text-shadow: 0 0 24px rgb(255 102 107 / 32%);
+/* The homepage hero is the only red wordmark. Other text uses each page's palette. */
+h1 .accent > .threads-word {
+  color: #ff2438;
+  text-shadow: 0 0 24px rgb(255 36 56 / 32%);
 }
