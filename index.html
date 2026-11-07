@@ -202,6 +202,87 @@
       font-weight: bold;
     }
 
+    .project-grid {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .project-card {
+      grid-column: span 2;
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: #101017;
+      transition: border-color .2s ease, transform .2s ease;
+    }
+
+    .project-card.featured { grid-column: span 3; }
+
+    .project-card:hover {
+      border-color: rgba(214,168,79,.6);
+      transform: translateY(-4px);
+    }
+
+    .project-card .project-preview {
+      display: block;
+      margin: 0;
+      border-bottom: 1px solid var(--line);
+      background: #0d1422;
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+    }
+
+    .project-preview img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .35s ease;
+    }
+
+    .project-preview.terem-preview { background: #193e50; }
+    .terem-preview img { object-fit: contain; }
+    .project-card:hover .project-preview img { transform: scale(1.025); }
+    .project-preview:focus-visible { outline: 3px solid var(--gold-light); outline-offset: -4px; }
+
+    .project-copy {
+      padding: 26px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .project-copy .project-type {
+      margin: 0 0 12px;
+      color: var(--gold-light);
+      font-size: 10px;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .project-copy h3 { margin-bottom: 14px; }
+    .project-copy > p:not(.project-type) { margin: 0 0 18px; font-size: 15px; }
+    .project-copy > a { margin-top: auto; padding-top: 8px; }
+
+    @media (min-width: 721px) and (max-width: 920px) {
+      .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .project-card, .project-card.featured { grid-column: span 1; }
+      .project-card:last-child { grid-column: 1 / -1; }
+      .project-card:last-child .project-preview { aspect-ratio: 3 / 1; }
+    }
+
+    @media (max-width: 720px) {
+      .project-grid { grid-template-columns: minmax(0, 1fr); }
+      .project-card, .project-card.featured { grid-column: span 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .project-card, .project-preview img { transition: none; }
+      .project-card:hover, .project-card:hover .project-preview img { transform: none; }
+    }
+
     .note-card {
       display: flex;
       align-items: center;
@@ -313,8 +394,13 @@
       <section id="projects">
         <h2>Current Threads</h2>
 
-        <div class="grid">
-          <div class="card">
+        <div class="grid project-grid">
+          <div class="card project-card featured">
+            <a class="project-preview" href="flowbusters.html" aria-label="Explore FlowBusters">
+              <img src="assets/flowbusters-preview.svg" width="800" height="500" alt="A painted gold padlock and branching workflow paths for FlowBusters." loading="lazy" decoding="async">
+            </a>
+            <div class="project-copy">
+            <p class="project-type">AI · Business logic security</p>
             <h3>FlowBusters</h3>
             <p>
               A Playwright MCP-powered project for uncovering business logic
@@ -322,9 +408,15 @@
               generating adversarial probes.
             </p>
             <a href="flowbusters.html">View Project →</a>
+            </div>
           </div>
 
-          <div class="card">
+          <div class="card project-card featured">
+            <a class="project-preview terem-preview" href="terem.html" aria-label="Explore TEREM">
+              <img src="assets/terem-operations-chamber.svg" width="1200" height="800" alt="TEREM's fairy-tale cottage and its eight AI security teammates." loading="lazy" decoding="async">
+            </a>
+            <div class="project-copy">
+            <p class="project-type">AI · White-box analysis</p>
             <h3>TEREM</h3>
             <p>
               Eight AI security agents, one evidence-driven review. A sink-first
@@ -332,17 +424,29 @@
               validation of findings.
             </p>
             <a href="terem.html">View Project →</a>
+            </div>
           </div>
 
-          <div class="card">
+          <div class="card project-card">
+            <div class="project-preview">
+              <img src="assets/offensive-security-preview.svg" width="800" height="500" alt="A red attack path crossing a network of security boundaries." loading="lazy" decoding="async">
+            </div>
+            <div class="project-copy">
+            <p class="project-type">Research · Adversarial thinking</p>
             <h3>Offensive Security</h3>
             <p>
               Application security, attack paths, adversarial thinking, and
               practical security research.
             </p>
+            </div>
           </div>
 
-          <div class="card">
+          <div class="card project-card">
+            <a class="project-preview" href="speaking-bootcamp.html" aria-label="Explore the Communication Lab">
+              <img src="assets/communication-lab-preview.svg" width="800" height="500" alt="Overlapping speech bubbles and an audio waveform for the Communication Lab." loading="lazy" decoding="async">
+            </a>
+            <div class="project-copy">
+            <p class="project-type">Communication · Practice</p>
             <h3>Security Engineer’s Communication Lab</h3>
             <p>
               A speaking bootcamp for technical professionals whose first language
@@ -352,14 +456,21 @@
             <a href="speaking-bootcamp.html">
               Explore the Exercises →
             </a>
+            </div>
           </div>
 
-          <div class="card">
+          <div class="card project-card">
+            <div class="project-preview">
+              <img src="assets/continuous-learning-preview.svg" width="800" height="500" alt="An open book beneath a constellation of connected ideas." loading="lazy" decoding="async">
+            </div>
+            <div class="project-copy">
+            <p class="project-type">Learning · Experimentation</p>
             <h3>Continuous Learning</h3>
             <p>
               OSCP journey, technical experimentation, and growing across
               different domains.
             </p>
+            </div>
           </div>
         </div>
       </section>
