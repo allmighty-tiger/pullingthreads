@@ -1,5 +1,5 @@
 /* The homepage hero is the only red wordmark. Other text uses each page's palette. */
 h1 .accent > .threads-word {
-  color: #ff666b;
-  text-shadow: 0 0 24px rgb(255 102 107 / 32%);
+  color: #ff2438;
+  text-shadow: 0 0 24px rgb(255 36 56 / 32%);
 }
