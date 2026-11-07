@@ -42,7 +42,6 @@
     .facts { display:flex; flex-wrap:wrap; gap:12px 30px; border-block:1px solid var(--line); padding:18px 0; margin-top:48px; color:var(--muted); font-size:13px; }
     .facts strong { color:var(--bright); }
     section { margin-top:88px; }
-    #team { margin-top:0; margin-bottom:clamp(48px, 7vw, 88px); }
     h2 { margin:0 0 22px; font-size:clamp(25px,4vw,36px); line-height:1.2; letter-spacing:-.025em; }
     h3 { margin:0 0 10px; font-size:19px; line-height:1.3; }
     p { color:var(--muted); }
@@ -88,7 +87,7 @@
     @media(max-width:600px) { .page { padding:28px 20px 36px; } .nav { align-items:flex-start; flex-direction:column; gap:18px; margin-bottom:48px; } .nav-links { gap:18px; font-size:12px; } .split,.workflow { grid-template-columns:1fr; } section { margin-top:64px; } .facts { gap:10px 20px; margin-top:32px; } .panel { padding:22px; } .agent { padding:20px 16px; } .agent h3 { font-size:21px; } .role { min-height:50px; font-size:10px; } }
     @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
   </style>
-  <link rel="stylesheet" href="assets/brand.css">
+  <link rel="stylesheet" href="assets/brand.css?v=red-project-titles-1">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -98,8 +97,23 @@
       <div class="nav-links"><a href="#team">The team</a><a href="#method">The method</a><a href="index.html#projects">← All projects</a></div>
     </nav>
     <main id="main">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">AI × White-box security research</p>
+          <h1 class="project-title">TEREM</h1>
+          <p class="hero-heading">Fairy-Tale Characters.<br>Real Security Work.</p>
+          <p class="intro">Eight AI agents go looking for trouble hiding between the lines. They trace source code, connect attack paths, and challenge findings before they reach the report.</p>
+          <div class="buttons"><a class="primary" href="https://github.com/allmighty-tiger/TEREM" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a><a href="#method">Explore the method ↓</a></div>
+        </div>
+        <figure>
+          <img class="hero-art" src="assets/terem-operations-chamber.svg" width="1200" height="800" alt="A warmly lit TEREM cottage surrounded by eight fairy-tale teammates: Vasilisa, Volk, Yaga, Gorynych, Leshy, Koschei, Mirror, and Kot.">
+          <figcaption>A little magic. A lot of evidence.</figcaption>
+        </figure>
+      </header>
+      <div class="facts" aria-label="Project at a glance"><span><strong>8</strong> specialist agents</span><span><strong>Sink-first</strong> analysis</span><span><strong>5 gates</strong> before reporting</span><span><strong>Static</strong> source review</span></div>
+
       <section id="team" aria-labelledby="team-title">
-        <p class="eyebrow" style="text-transform:none">Meet TEREMOK's inhabitants</p>
+        <p class="eyebrow" style="text-transform:none">Meet TEREM's inhabitants</p>
         <h2 id="team-title">Eight characters. Distinct responsibilities.</h2>
         <p class="section-intro">The fairy-tale names give the team a personality. Source evidence and review rules govern its conclusions.</p>
         <div class="team">
@@ -113,21 +127,6 @@
           <article class="agent"><img src="assets/terem-agents/kot.svg" width="134" height="134" alt="" loading="lazy" decoding="async"><h3>Kot</h3><span class="role">Memory &amp; documentation</span><p>Preserves decisions, handoffs, coverage, and the team's session history.</p></article>
         </div>
       </section>
-
-      <header class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">AI × White-box security research</p>
-          <h1>TEREM</h1>
-          <p class="hero-heading">Fairy-Tale Characters.<br>Real Security Work.</p>
-          <p class="intro">Eight AI agents go looking for trouble hiding between the lines. They trace source code, connect attack paths, and challenge findings before they reach the report.</p>
-          <div class="buttons"><a class="primary" href="https://github.com/allmighty-tiger/TEREM" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a><a href="#method">Explore the method ↓</a></div>
-        </div>
-        <figure>
-          <img class="hero-art" src="assets/terem-operations-chamber.svg" width="1200" height="800" alt="A warmly lit TEREM cottage surrounded by eight fairy-tale teammates: Vasilisa, Volk, Yaga, Gorynych, Leshy, Koschei, Mirror, and Kot.">
-          <figcaption>A little magic. A lot of evidence.</figcaption>
-        </figure>
-      </header>
-      <div class="facts" aria-label="Project at a glance"><span><strong>8</strong> specialist agents</span><span><strong>Sink-first</strong> analysis</span><span><strong>5 gates</strong> before reporting</span><span><strong>Static</strong> source review</span></div>
 
       <section id="method" aria-labelledby="method-title">
         <p class="eyebrow">Start where data leaves a trace</p>
