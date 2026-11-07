@@ -1,0 +1,8 @@
+/* Shared wordmark color for every visible occurrence of “Threads”. */
+body span.threads-word {
+  color: #ff666b;
+}
+
+h1 .accent:has(.threads-word) {
+  text-shadow: 0 0 24px rgb(255 102 107 / 32%);
+}
