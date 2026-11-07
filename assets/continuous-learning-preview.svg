@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#12303a"/><stop offset="1" stop-color="#111620"/></linearGradient><linearGradient id="paper" x2="1" y2="1"><stop stop-color="#b5ddd0"/><stop offset="1" stop-color="#70a9a0"/></linearGradient></defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <g fill="none" stroke="#8fcbbd" stroke-opacity=".16"><circle cx="400" cy="244" r="193"/><path d="m247 168 110-56 115 21 89 90M357 112l43 121 72-100M247 168l153 65 161-10" stroke-dasharray="4 8"/></g>
+  <g fill="#a7d8c6"><circle cx="247" cy="168" r="6"/><circle cx="357" cy="112" r="8"/><circle cx="472" cy="133" r="6"/><circle cx="561" cy="223" r="7"/></g>
+  <path d="m400 225 5 12 13 2-10 9 2 13-10-6-11 6 2-13-10-9 14-2Z" fill="#ebce87"/>
+  <path d="M226 274q86-27 174 17 88-44 174-17v101q-86-23-174 19-88-42-174-19Z" fill="#1b4a4c" stroke="#78b8aa" stroke-width="3"/>
+  <path d="M240 259q76-23 160 20 84-43 160-20v100q-76-23-160 20-84-43-160-20Z" fill="url(#paper)"/>
+  <path d="M400 279v100" fill="none" stroke="#386567" stroke-width="3"/>
+  <g fill="none" stroke="#427978" stroke-opacity=".6" stroke-width="3" stroke-linecap="round"><path d="M263 291q52-9 110 17m-110-3q52-9 110 17m-110-3q52-9 110 17m54-28q58-26 110-17m-110 31q58-26 110-17m-110 31q58-26 110-17"/></g>
+  <text x="400" y="451" fill="#a3c9be" font-family="Arial,sans-serif" font-size="16" letter-spacing="5" text-anchor="middle">ONE THREAD LEADS TO ANOTHER</text>
+</svg>
