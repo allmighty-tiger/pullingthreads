@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TEREM | Pulling Threads</title>
+  <meta name="description" content="TEREM is an eight-agent AI team for sink-first white-box security analysis, source-based attack-chain research, and independent Five-Gates validation.">
+  <link rel="canonical" href="https://pullingthreads.org/terem.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="TEREM — Fairy-Tale Characters. Real Security Work.">
+  <meta property="og:description" content="Eight AI agents trace source code, connect attack paths, and challenge findings before they reach the report.">
+  <meta property="og:url" content="https://pullingthreads.org/terem.html">
+  <meta name="theme-color" content="#07070d">
+  <style>
+    :root { --bg:#07070d; --surface:#111117; --text:#f5f5f7; --muted:#cfcfd8; --dim:#aaaab7; --gold:#e6c15a; --bright:#ffe9a8; --line:rgba(230,193,90,.25); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:24px; }
+    body { margin:0; background:var(--bg); color:var(--text); font:16px/1.65 Arial,sans-serif; }
+    a { color:var(--gold); text-underline-offset:5px; }
+    a:hover { color:var(--bright); }
+    a:focus-visible { outline:2px solid var(--bright); outline-offset:6px; border-radius:3px; }
+    .skip { position:absolute; left:24px; top:-100px; z-index:5; padding:10px 16px; background:var(--surface); }
+    .skip:focus { top:12px; }
+    .page { max-width:1128px; margin:auto; padding:42px 24px 48px; }
+    .nav { display:flex; align-items:center; justify-content:space-between; gap:24px; margin-bottom:88px; font-size:13px; text-transform:uppercase; letter-spacing:.16em; }
+    .nav a { color:var(--text); text-decoration:none; }
+    .brand span { color:var(--gold); }
+    .nav-links { display:flex; flex-wrap:wrap; gap:24px; letter-spacing:.06em; }
+    .eyebrow { margin:0 0 20px; color:var(--gold); font-size:12px; letter-spacing:.18em; text-transform:uppercase; }
+    .hero { display:grid; grid-template-columns:.95fr 1.05fr; align-items:center; gap:38px; }
+    h1 { margin:0 0 22px; color:var(--gold); font-size:clamp(68px,9vw,112px); line-height:.95; letter-spacing:-.055em; text-shadow:0 0 32px rgba(230,193,90,.18); }
+    .hero-heading { margin:0 0 20px; font-size:clamp(24px,3vw,34px); line-height:1.2; letter-spacing:-.025em; }
+    .intro { color:var(--muted); font-size:18px; margin:0 0 28px; }
+    .buttons { display:flex; flex-wrap:wrap; gap:12px; }
+    .buttons a { padding:11px 17px; border:1px solid var(--line); border-radius:8px; text-decoration:none; color:var(--text); }
+    .buttons .primary { background:var(--gold); color:#16130a; border-color:var(--gold); font-weight:bold; }
+    .buttons a:hover { border-color:var(--bright); background:rgba(230,193,90,.12); }
+    .buttons .primary:hover { background:var(--bright); }
+    figure { margin:0; min-width:0; }
+    .hero-art { display:block; width:100%; height:auto; border-radius:18px; border:1px solid var(--line); box-shadow:0 0 65px rgba(230,193,90,.07); }
+    figcaption { font-size:12px; color:var(--dim); margin-top:12px; text-align:center; }
+    .facts { display:flex; flex-wrap:wrap; gap:12px 30px; border-block:1px solid var(--line); padding:18px 0; margin-top:48px; color:var(--muted); font-size:13px; }
+    .facts strong { color:var(--bright); }
+    section { margin-top:88px; }
+    h2 { margin:0 0 22px; font-size:clamp(25px,4vw,36px); line-height:1.2; letter-spacing:-.025em; }
+    h3 { margin:0 0 10px; font-size:19px; line-height:1.3; }
+    p { color:var(--muted); }
+    .section-intro { max-width:760px; margin:0 0 28px; }
+    .split { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+    .split > * { min-width:0; }
+    .split p:first-child { margin-top:0; }
+    .panel { padding:28px; background:var(--surface); border:1px solid var(--line); border-radius:14px; }
+    .example-label { margin:0 0 18px; color:var(--gold); font-size:11px; letter-spacing:.15em; text-transform:uppercase; }
+    .trace { display:flex; flex-direction:column; gap:8px; margin:0; padding:0; list-style:none; }
+    .trace li { padding:10px 14px; border-left:2px solid var(--gold); background:rgba(230,193,90,.045); color:var(--text); }
+    .trace small { display:block; color:var(--muted); font-size:12px; }
+    .example-note { font-size:13px; margin:18px 0 0; }
+    .workflow { margin:0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; counter-reset:phase; }
+    .workflow li { counter-increment:phase; padding:24px; border-top:1px solid var(--line); background:linear-gradient(150deg,rgba(230,193,90,.05),transparent); }
+    .workflow li::before { content:"0" counter(phase); display:block; color:var(--gold); font-size:12px; letter-spacing:.16em; margin-bottom:18px; }
+    .workflow p { margin:0; font-size:14px; }
+    .team { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1px; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--line); }
+    .agent { background:var(--surface); padding:24px 22px; }
+    .agent h3 { color:var(--bright); font-size:23px; }
+    .role { min-height:40px; display:block; color:var(--gold); font-size:11px; line-height:1.5; text-transform:uppercase; letter-spacing:.08em; }
+    .agent p { margin:14px 0 0; font-size:14px; }
+    .gates { list-style:none; margin:0; padding:0; counter-reset:gate; }
+    .gates li { counter-increment:gate; display:grid; grid-template-columns:28px 1fr; column-gap:16px; padding:18px 0; border-bottom:1px solid var(--line); }
+    .gates li:first-child { padding-top:0; }
+    .gates li::before { content:counter(gate); color:var(--gold); font:20px Georgia,serif; }
+    .gates strong { display:block; margin-bottom:4px; }
+    .gates p { margin:0; font-size:14px; }
+    .callout { border-left:2px solid var(--gold); padding-left:20px; margin:24px 0; }
+    .verdicts { display:flex; flex-wrap:wrap; gap:8px; margin-top:24px; }
+    .verdicts span { padding:5px 9px; border:1px solid var(--line); border-radius:4px; color:var(--bright); font-size:10px; letter-spacing:.08em; }
+    .deliverables { margin:0; padding-left:20px; color:var(--muted); }
+    .deliverables li + li { margin-top:12px; }
+    .deliverables strong { color:var(--text); }
+    .setup { margin-top:28px; font-size:14px; color:var(--muted); }
+    .setup summary { cursor:pointer; color:var(--gold); padding:14px 0; }
+    .setup p { margin:0; padding:0 0 14px; }
+    .credits { margin-top:48px; color:var(--dim); font-size:12px; max-width:900px; }
+    footer { margin-top:64px; padding-top:24px; border-top:1px solid rgba(255,255,255,.1); display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; font-size:13px; color:var(--dim); }
+    footer a { text-decoration:none; }
+    @media(max-width:900px) { .hero { grid-template-columns:1fr; gap:32px; } .hero-copy { max-width:690px; } figure { max-width:720px; } .team { grid-template-columns:repeat(2,minmax(0,1fr)); } .nav { margin-bottom:60px; } }
+    @media(max-width:600px) { .page { padding:28px 20px 36px; } .nav { align-items:flex-start; flex-direction:column; gap:18px; margin-bottom:48px; } .nav-links { gap:18px; font-size:12px; } .split,.workflow { grid-template-columns:1fr; } section { margin-top:64px; } .facts { gap:10px 20px; margin-top:32px; } .panel { padding:22px; } .agent { padding:20px 16px; } .agent h3 { font-size:21px; } .role { min-height:50px; font-size:10px; } }
+    @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="page">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="index.html">Pulling <span>Threads</span></a>
+      <div class="nav-links"><a href="#team">The team</a><a href="#method">The method</a><a href="index.html#projects">← All projects</a></div>
+    </nav>
+    <main id="main">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">AI × White-box security research</p>
+          <h1>TEREM</h1>
+          <p class="hero-heading">Fairy-Tale Characters.<br>Real Security Work.</p>
+          <p class="intro">Eight AI agents go looking for trouble hiding between the lines. They trace source code, connect attack paths, and challenge findings before they reach the report.</p>
+          <div class="buttons"><a class="primary" href="https://github.com/allmighty-tiger/TEREM" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a><a href="#method">Explore the method ↓</a></div>
+        </div>
+        <figure>
+          <img class="hero-art" src="assets/terem-operations-chamber.svg" width="1200" height="800" alt="A warmly lit TEREM cottage surrounded by eight fairy-tale teammates: Vasilisa, Volk, Yaga, Gorynych, Leshy, Koschei, Mirror, and Kot.">
+          <figcaption>A little magic. A lot of evidence.</figcaption>
+        </figure>
+      </header>
+      <div class="facts" aria-label="Project at a glance"><span><strong>8</strong> specialist agents</span><span><strong>Sink-first</strong> analysis</span><span><strong>5 gates</strong> before reporting</span><span><strong>Static</strong> source review</span></div>
+
+      <section id="method" aria-labelledby="method-title">
+        <p class="eyebrow">Start where data leaves a trace</p>
+        <h2 id="method-title">One sink. Every relevant angle.</h2>
+        <div class="split">
+          <div>
+            <p>A security review can lose the thread as it moves from one vulnerability class to another. TEREM organizes the work around output sinks: HTTP responses, email, logs, generated PDFs, files, and redirects.</p>
+            <p>For each sink, the team traces data back to its sources, examines the controls along the path, and applies the relevant vulnerability classes. An email builder deserves the same scrutiny as the endpoint that calls it.</p>
+            <p>TEREM is a security-team configuration built on <a href="https://github.com/github/squad" target="_blank" rel="noopener noreferrer">GitHub Squad</a>: specialist roles, explicit handoffs, validation rules, report templates, and structural validators.</p>
+          </div>
+          <div class="panel">
+            <p class="example-label">Illustrative review · email notification</p>
+            <ol class="trace" aria-label="Trace backward from email output to its inputs">
+              <li>Email output <small>Start at the sink. What reaches the recipient?</small></li>
+              <li>Template &amp; notification service <small>Trace encoding, field binding, and content assembly.</small></li>
+              <li>Endpoint &amp; input sources <small>Check ownership, authorization, and attacker control.</small></li>
+            </ol>
+            <p class="example-note">Review angles: HTML injection, access control, mass assignment, and privilege boundaries. A review angle is a question to investigate, not a finding.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="workflow" aria-labelledby="workflow-title">
+        <p class="eyebrow">From source to a defensible report</p>
+        <h2 id="workflow-title">A team with explicit handoffs.</h2>
+        <p class="section-intro">Discovery, triage, chain analysis, and validation have separate owners. Candidate issues stay provisional until the evidence has been reviewed.</p>
+        <ol class="workflow">
+          <li><h3>Inventory</h3><p>Vasilisa enforces Phase 0: map output sinks and inventory query parameters before discovery starts.</p></li>
+          <li><h3>Investigate in parallel</h3><p>Specialists inspect application code, identity boundaries, infrastructure, and dependencies within the static review scope.</p></li>
+          <li><h3>Triage the candidates</h3><p>Vasilisa consolidates evidence and routes the candidate set for deeper analysis.</p></li>
+          <li><h3>Connect attack chains</h3><p>Koschei connects candidates across agents, traces each hop in source, and looks for controls that break the path.</p></li>
+          <li><h3>Challenge the evidence</h3><p>Mirror independently applies all five validation gates to standalone candidates and complete chains.</p></li>
+          <li><h3>Report &amp; preserve</h3><p>Vasilisa assembles validated findings and manual verification steps. Kot preserves decisions, coverage, and session records.</p></li>
+        </ol>
+      </section>
+
+      <section id="team" aria-labelledby="team-title">
+        <p class="eyebrow">Meet the inhabitants</p>
+        <h2 id="team-title">Eight characters. Distinct responsibilities.</h2>
+        <p class="section-intro">The fairy-tale names give the team a personality. Source evidence and review rules govern its conclusions.</p>
+        <div class="team">
+          <article class="agent"><h3>Vasilisa</h3><span class="role">Lead &amp; orchestrator</span><p>Owns scope, the initial inventory, work routing, triage, and the final report.</p></article>
+          <article class="agent"><h3>Volk</h3><span class="role">Web application security</span><p>Hunts for injection, object access flaws, unsafe inputs, and overlooked application paths.</p></article>
+          <article class="agent"><h3>Yaga</h3><span class="role">Identity &amp; access</span><p>Reviews authentication, authorization, tokens, sessions, and trust boundaries.</p></article>
+          <article class="agent"><h3>Gorynych</h3><span class="role">Infrastructure &amp; cloud</span><p>Reviews cloud and container configuration, proxies, secrets, and CI/CD.</p></article>
+          <article class="agent"><h3>Leshy</h3><span class="role">Codebase reconnaissance</span><p>Maps the codebase, dependencies, and connections that other reviewers may overlook.</p></article>
+          <article class="agent"><h3>Koschei</h3><span class="role">Root causes &amp; attack chains</span><p>Connects candidate weaknesses into source-backed paths and checks every hop.</p></article>
+          <article class="agent"><h3>Mirror</h3><span class="role">Independent validation</span><p>Challenges evidence, exploitability, severity, and mitigations through five gates.</p></article>
+          <article class="agent"><h3>Kot</h3><span class="role">Memory &amp; documentation</span><p>Preserves decisions, handoffs, coverage, and the team's session history.</p></article>
+        </div>
+      </section>
+
+      <section id="validation" aria-labelledby="validation-title">
+        <div class="split">
+          <div>
+            <p class="eyebrow">Mirror's Five-Gates review</p>
+            <h2 id="validation-title">A plausible story needs proof.</h2>
+            <p>Every candidate must survive an independent review. For an attack chain, the evidence must support every hop and the final impact. One effective control can break the entire chain.</p>
+            <p class="callout">“Confirmed” means the candidate passed the source-based validation process. Runtime reproduction remains a separate, manual step for the user.</p>
+            <div class="verdicts" aria-label="Validation verdicts"><span>CONFIRMED</span><span>OBSERVATION</span><span>REJECTED</span></div>
+          </div>
+          <ol class="gates">
+            <li><div><strong>Source code verification</strong><p>Does the claim match exact file-and-line evidence on a reachable code path?</p></div></li>
+            <li><div><strong>Attack flow validation</strong><p>Is the sequence realistic, with explicit prerequisites and traceable state changes?</p></div></li>
+            <li><div><strong>Severity calibration</strong><p>Does the demonstrated impact support the proposed severity?</p></div></li>
+            <li><div><strong>False-positive review</strong><p>Do sanitization, ownership checks, framework protections, or other controls defeat the claim?</p></div></li>
+            <li><div><strong>Reproducibility &amp; manual PoC</strong><p>Are the steps and prerequisites clear enough for a person to verify the issue?</p></div></li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="deliverables" aria-labelledby="deliverables-title">
+        <p class="eyebrow">What comes out of a review</p>
+        <h2 id="deliverables-title">Findings you can follow back to code.</h2>
+        <div class="split">
+          <div class="panel">
+            <h3>The review package</h3>
+            <ul class="deliverables">
+              <li><strong>Findings report</strong> with source locations, impact, and manual proof-of-concept steps.</li>
+              <li><strong>Attack-chain analysis</strong> with per-hop evidence and an end-to-end verification path.</li>
+              <li><strong>Execution summary</strong> documenting the team's review work, coverage, and handoffs.</li>
+              <li><strong>Supporting records</strong> preserving analysis, validation decisions, and session context.</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Source review, with human verification</h3>
+            <p>TEREM analyzes an approved local copy of source code. Its workflow does not execute the target or access live environments. The user performs runtime verification separately.</p>
+            <p>The report separates findings that passed validation from observations and gaps, so a reviewer can see both the evidence and its limits.</p>
+            <details class="setup"><summary>What is needed to run the full workflow?</summary><p>A compatible Squad host, Python 3 for report validation, the target source code, and all 51 mapped active local checklist files from authorized sources. Checklist contents are supplied separately and are not bundled in the repository. See the README for setup requirements.</p></details>
+            <a href="https://github.com/allmighty-tiger/TEREM" target="_blank" rel="noopener noreferrer">Explore TEREM on GitHub ↗</a>
+          </div>
+        </div>
+        <p class="credits">Built on <a href="https://github.com/github/squad" target="_blank" rel="noopener noreferrer">GitHub Squad</a>, © 2026 Brady Gaster and contributors (MIT). Some separately obtained local checklist references originate from <a href="https://github.com/SnailSploit/offensive-checklist" target="_blank" rel="noopener noreferrer">SnailSploit/offensive-checklist</a>; checklist text is not reproduced here. See TEREM's <a href="https://github.com/allmighty-tiger/TEREM/blob/main/THIRD_PARTY_NOTICES.md" target="_blank" rel="noopener noreferrer">third-party notices</a> for attribution and redistribution status.</p>
+      </section>
+    </main>
+    <footer><span>© 2026 Pulling Threads</span><a href="index.html#projects">Keep pulling threads →</a></footer>
+  </div>
+</body>
+</html>
