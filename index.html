@@ -233,31 +233,6 @@
       font-weight: bold;
     }
 
-    .about-layout {
-      display: grid;
-      grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
-      align-items: start;
-      gap: 30px;
-    }
-
-    .about-photo {
-      display: block;
-      width: 100%;
-      height: auto;
-      aspect-ratio: 6 / 5;
-      object-fit: cover;
-      border-radius: 12px;
-    }
-
-    .about-copy p:first-child { margin-top: 0; }
-    .about-copy p:last-child { margin-bottom: 0; }
-    .about-copy .about-lead {
-      color: var(--text);
-      font-size: 19px;
-      line-height: 1.45;
-      font-weight: bold;
-    }
-
     .project-grid {
       grid-template-columns: repeat(6, minmax(0, 1fr));
       gap: 22px;
@@ -384,20 +359,6 @@
       .nav-links a {
         display: inline-block;
         margin: 8px 18px 0 0;
-      }
-
-      .nav-links .coffee-link {
-        margin: 8px 0 0 0;
-      }
-
-      .about-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .about-photo {
-        width: 100%;
-        height: auto;
-        max-height: 330px;
       }
 
       .thread-art {
@@ -575,24 +536,17 @@
       <section id="about" class="about">
         <h2>About</h2>
 
-        <div class="card about-layout">
-          <img class="about-photo" src="assets/about-portrait.webp" alt="Portrait at a laptop, looking thoughtfully to the side" width="300" height="250" loading="lazy" decoding="async">
-          <div class="about-copy">
-            <p class="about-lead">My superpower is looking at the same application as a tester, a developer, and an attacker.</p>
-            <p>
-              I've worked in all three roles, so I can connect how something should work,
-              how it was built, and how someone could misuse it. That's why I see myself as a connector.
-            </p>
-            <p>
-              I help teams find security problems that become visible when you look at the whole process.
-              Each feature might work correctly on its own, but what happens when someone combines actions
-              in an unexpected way? I investigate that and show what actually happens.
-            </p>
-            <p>
-              I'm a Red Team Engineer building AI-assisted security tools and exploring the threads
-              connecting security, AI, and software engineering.
-            </p>
-          </div>
+        <div class="card">
+          <p>
+            I am a Red Team Engineer with a background in software engineering
+            and test automation.
+          </p>
+
+          <p>
+            I enjoy exploring how security, AI, and complex systems intersect.
+            Pulling <span class="threads-word">Threads</span> is a place for projects, technical notes,
+            experiments, and ideas worth investigating.
+          </p>
         </div>
       </section>
 
