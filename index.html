@@ -98,23 +98,33 @@
 
     .nav-links .coffee-link {
       display: inline-flex;
+      justify-content: center;
       align-items: center;
       vertical-align: middle;
+      width: 46px;
+      height: 46px;
       margin-left: 24px;
-      letter-spacing: normal;
+      border-radius: 9px;
+      background: #ffdd00;
+      transition: background-color .15s ease, transform .15s ease;
     }
 
-    .coffee-link img {
+    .coffee-link svg {
       display: block;
-      width: 160px;
-      height: auto;
-      max-width: 100%;
+      width: 27px;
+      height: 27px;
+      fill: #fff;
+    }
+
+    .nav-links .coffee-link:hover {
+      background: #f4ce00;
+      transform: translateY(-1px);
     }
 
     .coffee-link:focus-visible {
       outline: 2px solid var(--gold-light);
       outline-offset: 4px;
-      border-radius: 8px;
+      border-radius: 9px;
     }
 
     .nav-links a:hover,
@@ -220,6 +230,31 @@
       margin-top: 14px;
       color: var(--gold);
       text-decoration: none;
+      font-weight: bold;
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
+      align-items: start;
+      gap: 30px;
+    }
+
+    .about-photo {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 6 / 5;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .about-copy p:first-child { margin-top: 0; }
+    .about-copy p:last-child { margin-bottom: 0; }
+    .about-copy .about-lead {
+      color: var(--text);
+      font-size: 19px;
+      line-height: 1.45;
       font-weight: bold;
     }
 
@@ -351,6 +386,20 @@
         margin: 8px 18px 0 0;
       }
 
+      .nav-links .coffee-link {
+        margin: 8px 0 0 0;
+      }
+
+      .about-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .about-photo {
+        width: 100%;
+        height: auto;
+        max-height: 330px;
+      }
+
       .thread-art {
         left: 15%;
         top: 165px;
@@ -396,8 +445,11 @@
           <a href="#projects">Current <span class="threads-word">Threads</span></a>
           <a href="#notes">Notes</a>
           <a href="#about">About</a>
-          <a class="coffee-link" href="https://buymeacoffee.com/allmightytiger" target="_blank" rel="noopener noreferrer" aria-label="Buy me a coffee (opens in a new tab)">
-            <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy me a coffee" width="160" height="45">
+          <a class="coffee-link" href="https://buymeacoffee.com/allmightytiger" target="_blank" rel="noopener noreferrer" aria-label="Buy me a coffee (opens in a new tab)" title="Buy me a coffee">
+            <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+              <path d="M5 8h18v10a9 9 0 0 1-18 0V8Zm18 1h3a4 4 0 0 1 0 8h-3v-3h3a1 1 0 0 0 0-2h-3V9ZM3 27h24v3H3v-3Z"/>
+              <path d="M9 3h2v4H9zm6-2h2v6h-2zm6 2h2v4h-2z"/>
+            </svg>
           </a>
         </div>
       </nav>
@@ -523,17 +575,24 @@
       <section id="about" class="about">
         <h2>About</h2>
 
-        <div class="card">
-          <p>
-            I am a Red Team Engineer with a background in software engineering
-            and test automation.
-          </p>
-
-          <p>
-            I enjoy exploring how security, AI, and complex systems intersect.
-            Pulling <span class="threads-word">Threads</span> is a place for projects, technical notes,
-            experiments, and ideas worth investigating.
-          </p>
+        <div class="card about-layout">
+          <img class="about-photo" src="assets/about-portrait.webp" alt="Portrait at a laptop, looking thoughtfully to the side" width="300" height="250" loading="lazy" decoding="async">
+          <div class="about-copy">
+            <p class="about-lead">My superpower is looking at the same application as a tester, a developer, and an attacker.</p>
+            <p>
+              I've worked in all three roles, so I can connect how something should work,
+              how it was built, and how someone could misuse it. That's why I see myself as a connector.
+            </p>
+            <p>
+              I help teams find security problems that become visible when you look at the whole process.
+              Each feature might work correctly on its own, but what happens when someone combines actions
+              in an unexpected way? I investigate that and show what actually happens.
+            </p>
+            <p>
+              I'm a Red Team Engineer building AI-assisted security tools and exploring the threads
+              connecting security, AI, and software engineering.
+            </p>
+          </div>
         </div>
       </section>
 
