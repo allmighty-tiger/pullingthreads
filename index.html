@@ -98,23 +98,33 @@
 
     .nav-links .coffee-link {
       display: inline-flex;
+      justify-content: center;
       align-items: center;
       vertical-align: middle;
+      width: 46px;
+      height: 46px;
       margin-left: 24px;
-      letter-spacing: normal;
+      border-radius: 9px;
+      background: #ffdd00;
+      transition: background-color .15s ease, transform .15s ease;
     }
 
-    .coffee-link img {
+    .coffee-link svg {
       display: block;
-      width: 160px;
-      height: auto;
-      max-width: 100%;
+      width: 27px;
+      height: 27px;
+      fill: #fff;
+    }
+
+    .nav-links .coffee-link:hover {
+      background: #f4ce00;
+      transform: translateY(-1px);
     }
 
     .coffee-link:focus-visible {
       outline: 2px solid var(--gold-light);
       outline-offset: 4px;
-      border-radius: 8px;
+      border-radius: 9px;
     }
 
     .nav-links a:hover,
@@ -396,8 +406,11 @@
           <a href="#projects">Current <span class="threads-word">Threads</span></a>
           <a href="#notes">Notes</a>
           <a href="#about">About</a>
-          <a class="coffee-link" href="https://buymeacoffee.com/allmightytiger" target="_blank" rel="noopener noreferrer" aria-label="Buy me a coffee (opens in a new tab)">
-            <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy me a coffee" width="160" height="45">
+          <a class="coffee-link" href="https://buymeacoffee.com/allmightytiger" target="_blank" rel="noopener noreferrer" aria-label="Buy me a coffee (opens in a new tab)" title="Buy me a coffee">
+            <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+              <path d="M5 8h18v10a9 9 0 0 1-18 0V8Zm18 1h3a4 4 0 0 1 0 8h-3v-3h3a1 1 0 0 0 0-2h-3V9ZM3 27h24v3H3v-3Z"/>
+              <path d="M9 3h2v4H9zm6-2h2v6h-2zm6 2h2v4h-2z"/>
+            </svg>
           </a>
         </div>
       </nav>
