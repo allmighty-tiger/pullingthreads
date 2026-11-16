@@ -96,6 +96,27 @@
       letter-spacing: .08em;
     }
 
+    .nav-links .coffee-link {
+      display: inline-flex;
+      align-items: center;
+      vertical-align: middle;
+      margin-left: 24px;
+      letter-spacing: normal;
+    }
+
+    .coffee-link img {
+      display: block;
+      width: 160px;
+      height: auto;
+      max-width: 100%;
+    }
+
+    .coffee-link:focus-visible {
+      outline: 2px solid var(--gold-light);
+      outline-offset: 4px;
+      border-radius: 8px;
+    }
+
     .nav-links a:hover,
     .card a:hover {
       color: var(--gold-light);
@@ -375,6 +396,9 @@
           <a href="#projects">Current <span class="threads-word">Threads</span></a>
           <a href="#notes">Notes</a>
           <a href="#about">About</a>
+          <a class="coffee-link" href="https://buymeacoffee.com/allmightytiger" target="_blank" rel="noopener noreferrer" aria-label="Buy me a coffee (opens in a new tab)">
+            <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy me a coffee" width="160" height="45">
+          </a>
         </div>
       </nav>
 
