@@ -109,11 +109,12 @@
       transition: background-color .15s ease, transform .15s ease;
     }
 
-    .coffee-link svg {
+    .coffee-link img {
       display: block;
-      width: 27px;
-      height: 27px;
-      fill: #fff;
+      width: 46px;
+      height: 46px;
+      object-fit: cover;
+      border-radius: 9px;
     }
 
     .nav-links .coffee-link:hover {
@@ -407,10 +408,7 @@
           <a href="#notes">Notes</a>
           <a href="#about">About</a>
           <a class="coffee-link" href="https://buymeacoffee.com/allmightytiger" target="_blank" rel="noopener noreferrer" aria-label="Buy me a coffee (opens in a new tab)" title="Buy me a coffee">
-            <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-              <path d="M5 8h18v10a9 9 0 0 1-18 0V8Zm18 1h3a4 4 0 0 1 0 8h-3v-3h3a1 1 0 0 0 0-2h-3V9ZM3 27h24v3H3v-3Z"/>
-              <path d="M9 3h2v4H9zm6-2h2v6h-2zm6 2h2v4h-2z"/>
-            </svg>
+            <img src="data:image/webp;base64,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" alt="" width="46" height="46" decoding="async">
           </a>
         </div>
       </nav>
